@@ -1,6 +1,5 @@
 package com.jorgetargz.recycler.ui.listado
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ItemPersonaBinding
 import com.jorgetargz.recycler.domain.modelo.Persona
+import com.jorgetargz.recycler.ui.common.inflate
 
 class PersonasAdapter(
     private val listActions: ListActions
@@ -16,8 +16,7 @@ class PersonasAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
         return ItemViewholder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_persona, parent, false),
+            parent.inflate(R.layout.item_persona),
             listActions
         )
     }
