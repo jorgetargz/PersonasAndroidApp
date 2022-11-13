@@ -18,16 +18,12 @@
     <string name="telefono_incorrecto">Telefono no valido</string>
     <string name="fecha_incorrecta">Fecha no valida</string>
     <string name="persona_añadida">Persona añadida</string>
-    <string name="error_borrar">No se ha borrado la persona</string>
     <string name="deletePersona">Delete Persona</string>
     <string name="updatePersona">Update persona</string>
-    <string name="error_borrar_persona">Error al eliminar</string>
     <string name="persona_borrada">Persona eliminada</string>
     <string name="accion_fallida">Accion fallida</string>
     <string name="actualizarPersona">Actualizar Persona</string>
     <string name="persona_actualizada">Persona actualizada</string>
-    <string name="dialog_delete_title">Eliminar</string>
-    <string name="dialog_delete_content">Seguro que quieres eliminar esta persona</string>
     <string name="dialog_coonfirm">SI</string>
     <string name="dialog_cancel">NO</string>
     <string name="dialog_add_title">Añadir</string>

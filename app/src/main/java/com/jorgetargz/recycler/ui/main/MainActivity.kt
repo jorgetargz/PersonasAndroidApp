@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
             containedButtonAddPerson.setOnClickListener {
                 viewModel.handleEvent(
-                    MainEvent.OnAddPersona(
+                    MainEvent.AddPersona(
                         textFieldEmail.editText?.text.toString(),
                         textFieldNombre.editText?.text.toString(),
                         textFieldTelefono.editText?.text.toString(),
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             containedButtonClean.setOnClickListener {
-                viewModel.handleEvent(MainEvent.OnCleanFields)
+                viewModel.handleEvent(MainEvent.CleanInputFields)
             }
 
             containedButtonOpenDB.setOnClickListener {
@@ -90,22 +90,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.uiState.observe(this) { state ->
-            state.error?.let { error ->
-                Timber.e(error)
-                Snackbar.make(binding.root, error, Snackbar.LENGTH_SHORT).show()
+            state.mensaje?.let { mensaje ->
+                Timber.i(mensaje)
+                Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT).show()
                 clearTextFieldErrors()
-                loadTextFieldErrors(error)
-                viewModel.handleEvent(MainEvent.OnClearState)
+                loadTextFieldErrors(mensaje)
+                viewModel.handleEvent(MainEvent.ClearState)
 
             }
             if (state.onAdd) {
                 showDialogConfirmAdd()
-                viewModel.handleEvent(MainEvent.OnClearState)
+                viewModel.handleEvent(MainEvent.ClearState)
             }
             if (state.cleanFields) {
                 clearTextFieldErrors()
                 clearTextFields()
-                viewModel.handleEvent(MainEvent.OnClearState)
+                viewModel.handleEvent(MainEvent.ClearState)
             }
         }
     }
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             }
             .setPositiveButton(stringProvider.getString(R.string.dialog_coonfirm)) { view, _ ->
                 viewModel.handleEvent(
-                    MainEvent.OnConfirmAddPersona(
+                    MainEvent.ConfirmAddPersona(
                         Persona(
                             binding.textFieldEmail.editText?.text.toString(),
                             binding.textFieldNombre.editText?.text.toString(),

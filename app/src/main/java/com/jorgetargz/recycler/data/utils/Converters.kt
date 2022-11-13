@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.data
+package com.jorgetargz.recycler.data.utils
 
 import androidx.room.TypeConverter
 import java.time.LocalDate

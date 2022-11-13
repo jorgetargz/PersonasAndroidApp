@@ -34,10 +34,10 @@
         app:startIconDrawable="@drawable/envelope_open_regular">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:maxLines="1"
-            android:enabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
+            android:maxLines="1"
             android:textColorHint="#5C6BC0" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,10 +59,10 @@
         app:startIconDrawable="@drawable/person_solid">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
+            android:maxLines="1"
             android:textColorHint="#5C6BC0"
             android:visibility="visible" />
 
@@ -85,10 +85,10 @@
         app:startIconDrawable="@drawable/phone_solid">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
+            android:maxLines="1"
             android:textColorHint="#5C6BC0" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,10 +110,10 @@
         app:startIconDrawable="@drawable/cake_candles_solid">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
+            android:maxLines="1"
             android:textColorHint="#7E57C2" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -125,10 +125,10 @@
         android:layout_height="wrap_content"
         android:text="@string/seleccioanr_fecha"
         app:icon="@drawable/calendar_solid"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldFNacimiento"
         app:layout_constraintBottom_toTopOf="@id/guidelineBottomFields"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha" />
+        app:layout_constraintTop_toBottomOf="@+id/textFieldFNacimiento" />
 
 
     <Button

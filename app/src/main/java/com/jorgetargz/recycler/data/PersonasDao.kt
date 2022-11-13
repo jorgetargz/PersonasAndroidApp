@@ -5,15 +5,16 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.jorgetargz.PersonaEntity
-import com.jorgetargz.recycler.domain.modelo.Persona
+import com.jorgetargz.recycler.data.modelo.PersonaEntity
+import com.jorgetargz.recycler.data.utils.SQLQueries
 
 @Dao
 interface PersonasDao {
-    @Query("SELECT * FROM personas")
+
+    @Query(SQLQueries.SELECT_ALL_PERSONAS)
     suspend fun getAll(): List<PersonaEntity>
 
-    @Query("SELECT * FROM personas WHERE email LIKE :first LIMIT 1")
+    @Query(SQLQueries.SELECT_PERSONA_BY_EMAIL)
     suspend fun findByEmail(first: String): PersonaEntity
 
     @Insert
@@ -24,4 +25,5 @@ interface PersonasDao {
 
     @Delete
     suspend fun delete(persona: PersonaEntity)
+
 }

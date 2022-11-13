@@ -1,4 +1,4 @@
-package com.jorgetargz
+package com.jorgetargz.recycler.data.modelo
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -11,4 +11,4 @@ data class PersonaEntity(
     @ColumnInfo(name = "nombre_persona") val nombre: String,
     @ColumnInfo(name = "fecha_nacimiento") val fnacimiento: LocalDate,
     @ColumnInfo(name = "telefono_personal") val telefono: String,
-) {}
+)

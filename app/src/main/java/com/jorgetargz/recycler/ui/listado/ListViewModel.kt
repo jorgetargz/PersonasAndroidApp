@@ -23,7 +23,7 @@ class ListViewModel(
         ListState(null, null, null)
     )
 
-    val uiState: LiveData<ListState> get() = _uiState
+    val uiState: LiveData<ListState> = _uiState
 
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, onDelete = null)
@@ -69,10 +69,10 @@ class ListViewModel(
 
     fun handleEvent(event: ListEvent) {
         when (event) {
-            is ListEvent.OnDeletePersona -> deletePerson(event.email)
-            is ListEvent.OnUndoDeletePersona -> undoDelete(event.persona)
+            is ListEvent.DeletePersona -> deletePerson(event.email)
+            is ListEvent.UndoDeletePersona -> undoDelete(event.persona)
             is ListEvent.LoadPersonas -> loadPersonas()
-            is ListEvent.OnClearState -> clearState()
+            is ListEvent.ClearState -> clearState()
         }
     }
 }

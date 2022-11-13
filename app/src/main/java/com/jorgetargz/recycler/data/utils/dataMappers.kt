@@ -1,6 +1,6 @@
-package com.jorgetargz.recycler.data
+package com.jorgetargz.recycler.data.utils
 
-import com.jorgetargz.PersonaEntity
+import com.jorgetargz.recycler.data.modelo.PersonaEntity
 import com.jorgetargz.recycler.domain.modelo.Persona
 
 fun Persona.toPersonaEntity() : PersonaEntity {

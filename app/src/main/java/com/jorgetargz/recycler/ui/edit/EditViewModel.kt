@@ -30,7 +30,7 @@ class EditViewModel(
             validarPersonaUseCase(email, nombre, telefono, fnacimiento, stringProvider)
         if (errorValidacion == null) {
             _uiState.value = _uiState.value?.copy(
-                error = null,
+                mensaje = null,
                 onEdit = true,
                 persona = Persona(
                     email,
@@ -44,7 +44,7 @@ class EditViewModel(
             )
         } else {
             _uiState.value = _uiState.value?.copy(
-                error = errorValidacion,
+                mensaje = errorValidacion,
             )
         }
     }
@@ -54,18 +54,18 @@ class EditViewModel(
             try {
                 updatePersonaUseCase.invoke(persona)
                 _uiState.value = _uiState.value?.copy(
-                    error = stringProvider.getString(R.string.persona_actualizada),
+                    mensaje = stringProvider.getString(R.string.persona_actualizada),
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value?.copy(
-                    error = stringProvider.getString(R.string.accion_fallida),
+                    mensaje = stringProvider.getString(R.string.accion_fallida),
                 )
             }
         }
     }
 
     private fun clearState() {
-        _uiState.value = _uiState.value?.copy(error = null, onEdit = false)
+        _uiState.value = _uiState.value?.copy(mensaje = null, onEdit = false)
     }
 
     private fun loadPerson(email: String) {
@@ -81,9 +81,9 @@ class EditViewModel(
 
     fun handleEvent(event: EditEvent) {
         when (event) {
-            is EditEvent.OnEditPersona -> editPersona(event.email, event.nombre, event.telefono, event.fnacimiento)
-            is EditEvent.OnConfirmEditPersona -> confirmEditPersona(event.persona)
-            is EditEvent.OnClearState -> clearState()
+            is EditEvent.EditPersona -> editPersona(event.email, event.nombre, event.telefono, event.fnacimiento)
+            is EditEvent.ConfirmEditPersona -> confirmEditPersona(event.persona)
+            is EditEvent.ClearState -> clearState()
             is EditEvent.LoadPersona -> loadPerson(event.email)
         }
     }

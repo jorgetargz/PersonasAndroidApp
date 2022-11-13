@@ -42,7 +42,7 @@ class ListActivity : AppCompatActivity() {
         }
 
         override fun deletePersona(email: String) {
-            viewModel.handleEvent(ListEvent.OnDeletePersona(email))
+            viewModel.handleEvent(ListEvent.DeletePersona(email))
         }
     }
 
@@ -58,10 +58,10 @@ class ListActivity : AppCompatActivity() {
 
         viewModel.handleEvent(ListEvent.LoadPersonas)
         viewModel.uiState.observe(this) { state ->
-            state.mensaje?.let { error ->
-                Timber.e(error)
-                Snackbar.make(rvPersonas, error, Snackbar.LENGTH_SHORT).show()
-                viewModel.handleEvent(ListEvent.OnClearState)
+            state.mensaje?.let { mensaje ->
+                Timber.i(mensaje)
+                Snackbar.make(rvPersonas, mensaje, Snackbar.LENGTH_SHORT).show()
+                viewModel.handleEvent(ListEvent.ClearState)
             }
             state.lista?.let { listaPersonas ->
                 adapter.submitList(listaPersonas)
@@ -69,7 +69,7 @@ class ListActivity : AppCompatActivity() {
             state.onDelete?.let { persona ->
                 Snackbar.make(rvPersonas, stringProvider.getString(R.string.persona_borrada), Snackbar.LENGTH_LONG)
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                        viewModel.handleEvent(ListEvent.OnUndoDeletePersona(persona))
+                        viewModel.handleEvent(ListEvent.UndoDeletePersona(persona))
                     }
                     .show()
             }

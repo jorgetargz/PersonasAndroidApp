@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.domain.modelo.Persona
 import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
@@ -27,13 +26,13 @@ class MainViewModel(
             validarPersonaUseCase(email, nombre, telefono, fnacimiento, stringProvider)
         if (errorValidacion == null) {
             _uiState.value = _uiState.value?.copy(
-                error = null,
+                mensaje = null,
                 onAdd = true,
                 cleanFields = false,
             )
         } else {
             _uiState.value = _uiState.value?.copy(
-                error = errorValidacion,
+                mensaje = errorValidacion,
             )
         }
     }
@@ -43,13 +42,13 @@ class MainViewModel(
             try {
                 addPersonaUseCase.invoke(persona)
                 _uiState.value = _uiState.value?.copy(
-                    error = stringProvider.getString(R.string.persona_añadida),
+                    mensaje = stringProvider.getString(R.string.persona_añadida),
                     onAdd = false,
                     cleanFields = true,
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value?.copy(
-                    error = stringProvider.getString(R.string.error_añadir_persona),
+                    mensaje = stringProvider.getString(R.string.error_añadir_persona),
                     onAdd = false,
                     cleanFields = true,
                 )
@@ -58,12 +57,12 @@ class MainViewModel(
     }
 
     private fun clearState() {
-        _uiState.value = _uiState.value?.copy(error = null, onAdd = false, cleanFields = false)
+        _uiState.value = _uiState.value?.copy(mensaje = null, onAdd = false, cleanFields = false)
     }
 
     private fun cleanFields() {
         _uiState.value = _uiState.value?.copy(
-            error = null,
+            mensaje = null,
             onAdd = false,
             cleanFields = true,
         )
@@ -71,15 +70,15 @@ class MainViewModel(
 
     fun handleEvent(event: MainEvent) {
         when (event) {
-            is MainEvent.OnAddPersona -> addPersona(
+            is MainEvent.AddPersona -> addPersona(
                 event.email,
                 event.nombre,
                 event.telefono,
                 event.fnacimiento
             )
-            is MainEvent.OnConfirmAddPersona -> confirmAddPersona(event.persona)
-            is MainEvent.OnClearState -> clearState()
-            is MainEvent.OnCleanFields -> cleanFields()
+            is MainEvent.ConfirmAddPersona -> confirmAddPersona(event.persona)
+            is MainEvent.ClearState -> clearState()
+            is MainEvent.CleanInputFields -> cleanFields()
         }
     }
 }

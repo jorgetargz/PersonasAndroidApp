@@ -1,7 +1,6 @@
 package com.jorgetargz.recycler.ui.timber
 
 import android.app.Application
-import android.util.Log
 import timber.log.Timber
 import timber.log.Timber.*
 

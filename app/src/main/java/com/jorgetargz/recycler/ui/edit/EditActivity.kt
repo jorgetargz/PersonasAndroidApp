@@ -48,7 +48,7 @@ class EditActivity : AppCompatActivity() {
         with(binding) {
             containedButtonEditPerson.setOnClickListener {
                 viewModel.handleEvent(
-                    EditEvent.OnEditPersona(
+                    EditEvent.EditPersona(
                         intent.getStringExtra(Constantes.EMAIL)!!,
                         binding.textFieldNombre.editText?.text.toString(),
                         binding.textFieldTelefono.editText?.text.toString(),
@@ -79,16 +79,16 @@ class EditActivity : AppCompatActivity() {
         }
 
         viewModel.uiState.observe(this) { uiState ->
-            uiState.error?.let { error ->
-                Timber.e(error)
-                Snackbar.make(binding.root, error, Snackbar.LENGTH_LONG).show()
+            uiState.mensaje?.let { mensaje ->
+                Timber.i(mensaje)
+                Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_LONG).show()
                 clearTextFieldErrors()
-                loadTextFieldErrors(error)
-                viewModel.handleEvent(EditEvent.OnClearState)
+                loadTextFieldErrors(mensaje)
+                viewModel.handleEvent(EditEvent.ClearState)
             }
             if (uiState.onEdit) {
                 showDialogConfirmEdit()
-                viewModel.handleEvent(EditEvent.OnClearState)
+                viewModel.handleEvent(EditEvent.ClearState)
             }
             uiState.persona.let {
                 with(binding) {
@@ -111,7 +111,7 @@ class EditActivity : AppCompatActivity() {
             }
             .setPositiveButton(stringProvider.getString(R.string.dialog_coonfirm)) { view, _ ->
                 viewModel.handleEvent(
-                    EditEvent.OnConfirmEditPersona(
+                    EditEvent.ConfirmEditPersona(
                         Persona(
                             binding.textFieldEmail.editText?.text.toString(),
                             binding.textFieldNombre.editText?.text.toString(),

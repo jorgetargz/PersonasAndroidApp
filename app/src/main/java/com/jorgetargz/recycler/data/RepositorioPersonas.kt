@@ -1,5 +1,7 @@
 package com.jorgetargz.recycler.data
 
+import com.jorgetargz.recycler.data.utils.toPersona
+import com.jorgetargz.recycler.data.utils.toPersonaEntity
 import com.jorgetargz.recycler.domain.modelo.Persona
 
 class RepositorioPersonas(private val personasDao: PersonasDao) {

@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.jorgetargz.PersonaEntity
-import com.jorgetargz.recycler.domain.modelo.Persona
+import com.jorgetargz.recycler.data.common.Constantes
+import com.jorgetargz.recycler.data.modelo.PersonaEntity
+import com.jorgetargz.recycler.data.utils.Converters
 
-@Database(entities = [PersonaEntity::class], version = 1)
+@Database(entities = [PersonaEntity::class], version = 2)
 @TypeConverters(Converters::class)
-    abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun personasDao(): PersonasDao
 
     companion object {
@@ -22,10 +23,10 @@ import com.jorgetargz.recycler.domain.modelo.Persona
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "personas_database"
+                    Constantes.DATABASE_NAME
                 )
-                    .createFromAsset("database/personas.db")
-                    .fallbackToDestructiveMigrationFrom(4)
+                    .createFromAsset(Constantes.DATABASE_PATH)
+                    .fallbackToDestructiveMigrationFrom(1)
                     .build()
                 INSTANCE = instance
                 instance
