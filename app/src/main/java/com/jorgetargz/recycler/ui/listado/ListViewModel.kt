@@ -26,7 +26,7 @@ class ListViewModel(
     val uiState: LiveData<ListState> = _uiState
 
     private fun clearState() {
-        _uiState.value = _uiState.value?.copy(mensaje = null, onDelete = null)
+        _uiState.value = _uiState.value?.copy(mensaje = null, personaDeleted = null)
     }
 
     private fun deletePerson(email: String) {
@@ -35,7 +35,22 @@ class ListViewModel(
                 val persona = getPersonaUseCase.invoke(email)
                 deletePersonaUseCase.invoke(persona)
                 _uiState.value = _uiState.value?.copy(
-                    onDelete = persona,
+                    personaDeleted = persona,
+                )
+                loadPersonas()
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value?.copy(mensaje = e.message)
+            }
+        }
+    }
+
+    private fun undoDelete(persona: Persona) {
+        viewModelScope.launch {
+            try {
+                addPersonaUseCase.invoke(persona)
+                _uiState.value = _uiState.value?.copy(
+                    personaDeleted = null,
+                    mensaje = stringProvider.getString(R.string.undo_delete)
                 )
                 loadPersonas()
             } catch (e: Exception) {
@@ -49,21 +64,6 @@ class ListViewModel(
             _uiState.value = _uiState.value?.copy(
                 lista = getPersonasUseCase.invoke(),
             )
-        }
-    }
-
-    private fun undoDelete(persona: Persona) {
-        viewModelScope.launch {
-            try {
-                addPersonaUseCase.invoke(persona)
-                _uiState.value = _uiState.value?.copy(
-                    onDelete = null,
-                    mensaje = stringProvider.getString(R.string.undo_delete)
-                )
-                loadPersonas()
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value?.copy(mensaje = e.message)
-            }
         }
     }
 

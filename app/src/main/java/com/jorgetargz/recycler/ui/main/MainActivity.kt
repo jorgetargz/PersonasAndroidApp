@@ -5,21 +5,19 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.data.AppDatabase
 import com.jorgetargz.recycler.data.RepositorioPersonas
 import com.jorgetargz.recycler.databinding.ActivityMainBinding
-import com.jorgetargz.recycler.domain.modelo.Persona
 import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
+import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.ui.listado.ListActivity
 import com.jorgetargz.recycler.util.StringProvider
 import timber.log.Timber
-import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -37,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             StringProvider.instance(this),
             ValidarPersonaUseCase(),
             AddPersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
+            DeletePersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
         )
     }
 
@@ -98,8 +97,15 @@ class MainActivity : AppCompatActivity() {
                 viewModel.handleEvent(MainEvent.ClearState)
 
             }
-            if (state.onAdd) {
-                showDialogConfirmAdd()
+            state.personaAdded?.let { persona ->
+                Timber.i(Constantes.PERSONA_ADDED, persona.email)
+                Snackbar.make(
+                    binding.root,
+                    stringProvider.getString(R.string.persona_añadida),
+                    Snackbar.LENGTH_LONG
+                ).setAction(stringProvider.getString(R.string.snackbar_undo)) {
+                    viewModel.handleEvent(MainEvent.UndoAddPersona(persona))
+                }.show()
                 viewModel.handleEvent(MainEvent.ClearState)
             }
             if (state.cleanFields) {
@@ -109,40 +115,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun showDialogConfirmAdd() {
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(stringProvider.getString(R.string.dialog_add_title))
-            .setMessage(stringProvider.getString(R.string.dialog_add_content))
-            .setNegativeButton(stringProvider.getString(R.string.dialog_cancel)) { view, _ ->
-                view.dismiss()
-            }
-            .setPositiveButton(stringProvider.getString(R.string.dialog_coonfirm)) { view, _ ->
-                viewModel.handleEvent(
-                    MainEvent.ConfirmAddPersona(
-                        Persona(
-                            binding.textFieldEmail.editText?.text.toString(),
-                            binding.textFieldNombre.editText?.text.toString(),
-                            LocalDate.parse(
-                                binding.textFieldFNacimiento.editText?.text.toString(),
-                                DateTimeFormatter.ofPattern(Constantes.DATE_FORMAT)
-                            ),
-                            binding.textFieldTelefono.editText?.text.toString(),
-                        )
-                    )
-                )
-                Snackbar.make(
-                    binding.root,
-                    stringProvider.getString(R.string.persona_añadida),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                view.dismiss()
-            }
-            .setCancelable(false)
-            .create()
-        dialog.show()
-    }
-
 
     private fun loadTextFieldErrors(error: String) {
         val stringProvider = StringProvider.instance(this)

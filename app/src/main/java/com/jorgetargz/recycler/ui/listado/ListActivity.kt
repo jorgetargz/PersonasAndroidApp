@@ -66,12 +66,14 @@ class ListActivity : AppCompatActivity() {
             state.lista?.let { listaPersonas ->
                 adapter.submitList(listaPersonas)
             }
-            state.onDelete?.let { persona ->
+            state.personaDeleted?.let { persona ->
+                Timber.i(Constantes.PERSONA_DELETED, persona.email)
                 Snackbar.make(rvPersonas, stringProvider.getString(R.string.persona_borrada), Snackbar.LENGTH_LONG)
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
                         viewModel.handleEvent(ListEvent.UndoDeletePersona(persona))
                     }
                     .show()
+                viewModel.handleEvent(ListEvent.ClearState)
             }
         }
     }

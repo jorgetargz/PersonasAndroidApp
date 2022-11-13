@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.data.AppDatabase
 import com.jorgetargz.recycler.data.RepositorioPersonas
 import com.jorgetargz.recycler.databinding.ActivityEditBinding
-import com.jorgetargz.recycler.domain.modelo.Persona
 import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.UpdatePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
@@ -18,7 +16,6 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.util.StringProvider
 import timber.log.Timber
-import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -86,11 +83,7 @@ class EditActivity : AppCompatActivity() {
                 loadTextFieldErrors(mensaje)
                 viewModel.handleEvent(EditEvent.ClearState)
             }
-            if (uiState.onEdit) {
-                showDialogConfirmEdit()
-                viewModel.handleEvent(EditEvent.ClearState)
-            }
-            uiState.persona.let {
+            uiState.personaMostrar.let {
                 with(binding) {
                     textFieldEmail.editText?.setText(it.email)
                     textFieldNombre.editText?.setText(it.nombre)
@@ -99,40 +92,18 @@ class EditActivity : AppCompatActivity() {
                     textFieldTelefono.editText?.setText(it.telefono)
                 }
             }
-        }
-    }
-
-    private fun showDialogConfirmEdit() {
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(stringProvider.getString(R.string.dialog_edit_title))
-            .setMessage(stringProvider.getString(R.string.dialog_edit_message))
-            .setNegativeButton(stringProvider.getString(R.string.dialog_cancel)) { view, _ ->
-                view.dismiss()
-            }
-            .setPositiveButton(stringProvider.getString(R.string.dialog_coonfirm)) { view, _ ->
-                viewModel.handleEvent(
-                    EditEvent.ConfirmEditPersona(
-                        Persona(
-                            binding.textFieldEmail.editText?.text.toString(),
-                            binding.textFieldNombre.editText?.text.toString(),
-                            LocalDate.parse(
-                                binding.textFieldFNacimiento.editText?.text.toString(),
-                                DateTimeFormatter.ofPattern(Constantes.DATE_FORMAT)
-                            ),
-                            binding.textFieldTelefono.editText?.text.toString(),
-                        )
-                    )
-                )
+            uiState.personaSinEditar?.let { persona ->
+                Timber.i(Constantes.PERSONA_EDITED, persona.email)
                 Snackbar.make(
                     binding.root,
-                    stringProvider.getString(R.string.persona_actualizada),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                view.dismiss()
+                    stringProvider.getString(R.string.persona_editada),
+                    Snackbar.LENGTH_LONG
+                ).setAction(stringProvider.getString(R.string.snackbar_undo)) {
+                    viewModel.handleEvent(EditEvent.UndoEditPersona(persona))
+                }.show()
+                viewModel.handleEvent(EditEvent.ClearState)
             }
-            .setCancelable(false)
-            .create()
-        dialog.show()
+        }
     }
 
     private fun loadTextFieldErrors(error: String) {

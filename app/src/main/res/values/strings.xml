@@ -34,4 +34,7 @@
     <string name="seleccioanr_fecha">Seleccionar fecha</string>
     <string name="snackbar_undo">Deshacer</string>
     <string name="undo_delete">Persona recuperada</string>
+    <string name="persona_eliminada">Persona eliminada</string>
+    <string name="error_eliminar_persona">Error al eliminar la persona</string>
+    <string name="persona_editada">Persona editada</string>
 </resources>

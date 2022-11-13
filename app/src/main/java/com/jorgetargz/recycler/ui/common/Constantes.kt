@@ -2,6 +2,9 @@ package com.jorgetargz.recycler.ui.common
 
 object Constantes {
 
+    const val PERSONA_EDITED: String = "persona_editada"
+    const val PERSONA_DELETED: String = "Persona eliminada"
+    const val PERSONA_ADDED: String = "Persona agregada"
     const val EMPTY_STRING = ""
     const val DOT = "."
     const val AT = "@"
