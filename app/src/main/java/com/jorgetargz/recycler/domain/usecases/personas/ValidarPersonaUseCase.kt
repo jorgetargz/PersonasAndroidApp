@@ -1,11 +1,12 @@
 package com.jorgetargz.recycler.domain.usecases.personas
 
 import com.jorgetargz.recycler.R
-import com.jorgetargz.recycler.ui.common.Constantes
+import com.jorgetargz.recycler.domain.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import java.util.regex.Pattern
+import javax.inject.Inject
 
-class ValidarPersonaUseCase {
+class ValidarPersonaUseCase @Inject constructor() {
 
     operator fun invoke(
         email: String,

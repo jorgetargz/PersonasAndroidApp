@@ -9,9 +9,14 @@ import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.GetPersonasUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Named
 
-class ListViewModel(
+@HiltViewModel
+class ListViewModel @Inject constructor(
+    @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val getPersonasUseCase: GetPersonasUseCase,
     private val deletePersonaUseCase: DeletePersonaUseCase,
@@ -74,32 +79,5 @@ class ListViewModel(
             is ListEvent.LoadPersonas -> loadPersonas()
             is ListEvent.ClearState -> clearState()
         }
-    }
-}
-
-/**
- * Factory class to instantiate the [ViewModel] instance.
- */
-class ListViewModelFactory(
-    private val stringProvider: StringProvider,
-    private val getPersonasUseCase: GetPersonasUseCase,
-    private val deletePersonaUseCase: DeletePersonaUseCase,
-    private val addPersonaUseCase: AddPersonaUseCase,
-    private val getPersonaUseCase: GetPersonaUseCase,
-
-
-    ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
-            @Suppress(Constantes.UNCHECKED_CAST)
-            return ListViewModel(
-                stringProvider,
-                getPersonasUseCase,
-                deletePersonaUseCase,
-                addPersonaUseCase,
-                getPersonaUseCase,
-            ) as T
-        }
-        throw IllegalArgumentException(Constantes.Unknown_ViewModel)
     }
 }

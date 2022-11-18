@@ -8,11 +8,16 @@ import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
+import javax.inject.Named
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val validarPersonaUseCase: ValidarPersonaUseCase,
     private val addPersonaUseCase: AddPersonaUseCase,
@@ -104,29 +109,5 @@ class MainViewModel(
             is MainEvent.CleanInputFields -> cleanFields()
             is MainEvent.UndoAddPersona -> undoAddPersona(event.persona)
         }
-    }
-}
-
-/**
- * Factory class to instantiate the [ViewModel] instance.
- */
-class MainViewModelFactory(
-    private val stringProvider: StringProvider,
-    private val validarPersonaUseCase: ValidarPersonaUseCase,
-    private val addPersonaUseCase: AddPersonaUseCase,
-    private val deletePersonaUseCase: DeletePersonaUseCase,
-
-    ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            @Suppress(Constantes.UNCHECKED_CAST)
-            return MainViewModel(
-                stringProvider,
-                validarPersonaUseCase,
-                addPersonaUseCase,
-                deletePersonaUseCase,
-            ) as T
-        }
-        throw IllegalArgumentException(Constantes.Unknown_ViewModel)
     }
 }

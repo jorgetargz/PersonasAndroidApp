@@ -3,8 +3,9 @@ package com.jorgetargz.recycler.data
 import com.jorgetargz.recycler.data.utils.toPersona
 import com.jorgetargz.recycler.data.utils.toPersonaEntity
 import com.jorgetargz.recycler.domain.modelo.Persona
+import javax.inject.Inject
 
-class RepositorioPersonas(private val personasDao: PersonasDao) {
+class RepositorioPersonas @Inject constructor(private val personasDao: PersonasDao) {
 
     suspend fun getPersonas() = personasDao.getAll().map { it.toPersona() }
 

@@ -1,43 +1,36 @@
 package com.jorgetargz.recycler.ui.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
-import com.jorgetargz.recycler.data.AppDatabase
-import com.jorgetargz.recycler.data.RepositorioPersonas
 import com.jorgetargz.recycler.databinding.ActivityMainBinding
-import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.ui.listado.ListActivity
 import com.jorgetargz.recycler.util.StringProvider
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var temp: Int = 0
     private lateinit var binding: ActivityMainBinding
-    private val stringProvider = StringProvider.instance(this)
+    private val stringProvider = StringProvider(this)
 
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(
-            StringProvider.instance(this),
-            ValidarPersonaUseCase(),
-            AddPersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-            DeletePersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-        )
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,8 +109,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.acerca_de -> {
+                val dialog = MaterialAlertDialogBuilder(this)
+                    .setTitle(stringProvider.getString(R.string.dialog_acerca_de_title))
+                    .setMessage(stringProvider.getString(R.string.dialog_acerca_de_content))
+                    .setPositiveButton(stringProvider.getString(R.string.dialog_dismiss)) { view, _ ->
+                        view.dismiss()
+                    }
+                    .setCancelable(true)
+                    .create()
+                dialog.show()
+                true
+            }
+            R.id.github -> {
+                val myProfileURI = Uri.parse(Constantes.GITHUB_PROFILE_URL)
+                val intent = Intent(Intent.ACTION_VIEW, myProfileURI)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
     private fun loadTextFieldErrors(error: String) {
-        val stringProvider = StringProvider.instance(this)
         when (error) {
             stringProvider.getString(R.string.email_incorrecto) -> {
                 binding.textFieldEmail.error = error

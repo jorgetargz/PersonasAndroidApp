@@ -8,11 +8,16 @@ import com.jorgetargz.recycler.domain.usecases.personas.UpdatePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
+import javax.inject.Named
 
-class EditViewModel(
+@HiltViewModel
+class EditViewModel @Inject constructor(
+    @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val validarPersonaUseCase: ValidarPersonaUseCase,
     private val getPersonaUseCase: GetPersonaUseCase,
@@ -20,7 +25,7 @@ class EditViewModel(
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
-        EditState(null, Persona(),null)
+        EditState(null, Persona(), null)
     )
 
     val uiState: LiveData<EditState> get() = _uiState
@@ -104,29 +109,5 @@ class EditViewModel(
             is EditEvent.ClearState -> clearState()
             is EditEvent.LoadPersona -> loadPerson(event.email)
         }
-    }
-}
-
-/**
- * Factory class to instantiate the [ViewModel] instance.
- */
-class EditViewModelFactory(
-    private val stringProvider: StringProvider,
-    private val validarPersonaUseCase: ValidarPersonaUseCase,
-    private val getPersonaUseCase: GetPersonaUseCase,
-    private val updatePersonaUseCase: UpdatePersonaUseCase,
-
-    ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(EditViewModel::class.java)) {
-            @Suppress(Constantes.UNCHECKED_CAST)
-            return EditViewModel(
-                stringProvider,
-                validarPersonaUseCase,
-                getPersonaUseCase,
-                updatePersonaUseCase,
-            ) as T
-        }
-        throw IllegalArgumentException(Constantes.Unknown_ViewModel)
     }
 }

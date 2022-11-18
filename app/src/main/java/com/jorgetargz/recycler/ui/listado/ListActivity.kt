@@ -1,38 +1,30 @@
 package com.jorgetargz.recycler.ui.listado
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
-import com.jorgetargz.recycler.data.AppDatabase
-import com.jorgetargz.recycler.data.RepositorioPersonas
-import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.GetPersonasUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.edit.EditActivity
 import com.jorgetargz.recycler.util.StringProvider
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class ListActivity : AppCompatActivity() {
 
     private lateinit var rvPersonas: RecyclerView
-    private val stringProvider = StringProvider.instance(this)
+    private val stringProvider = StringProvider(this)
 
-    private val viewModel: ListViewModel by viewModels {
-        ListViewModelFactory(
-            StringProvider.instance(this),
-            GetPersonasUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-            DeletePersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-            AddPersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-            GetPersonaUseCase(RepositorioPersonas(AppDatabase.getDatabase(this).personasDao())),
-        )
-    }
+    private val viewModel: ListViewModel by viewModels()
 
     inner class ListActionsImpl : ListActions {
         override fun editPersona(email: String) {
@@ -68,7 +60,11 @@ class ListActivity : AppCompatActivity() {
             }
             state.personaDeleted?.let { persona ->
                 Timber.i(Constantes.PERSONA_DELETED, persona.email)
-                Snackbar.make(rvPersonas, stringProvider.getString(R.string.persona_borrada), Snackbar.LENGTH_LONG)
+                Snackbar.make(
+                    rvPersonas,
+                    stringProvider.getString(R.string.persona_borrada),
+                    Snackbar.LENGTH_LONG
+                )
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
                         viewModel.handleEvent(ListEvent.UndoDeletePersona(persona))
                     }
@@ -81,5 +77,34 @@ class ListActivity : AppCompatActivity() {
     public override fun onResume() {
         super.onResume()
         viewModel.handleEvent(ListEvent.LoadPersonas)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.acerca_de -> {
+                val dialog = MaterialAlertDialogBuilder(this)
+                    .setTitle(stringProvider.getString(R.string.dialog_acerca_de_title))
+                    .setMessage(stringProvider.getString(R.string.dialog_acerca_de_content))
+                    .setPositiveButton(stringProvider.getString(R.string.dialog_dismiss)) { view, _ ->
+                        view.dismiss()
+                    }
+                    .setCancelable(true)
+                    .create()
+                dialog.show()
+                true
+            }
+            R.id.github -> {
+                val myProfileURI = Uri.parse(Constantes.GITHUB_PROFILE_URL)
+                val intent = Intent(Intent.ACTION_VIEW, myProfileURI)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
