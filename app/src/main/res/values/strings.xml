@@ -24,17 +24,16 @@
     <string name="accion_fallida">Accion fallida</string>
     <string name="actualizarPersona">Actualizar Persona</string>
     <string name="persona_actualizada">Persona actualizada</string>
-    <string name="dialog_coonfirm">SI</string>
-    <string name="dialog_cancel">NO</string>
-    <string name="dialog_add_title">Añadir</string>
-    <string name="dialog_add_content">Seguro que quieres añadir esta persona</string>
     <string name="date_picker_title">Elije una fecha</string>
-    <string name="dialog_edit_title">Editar</string>
-    <string name="dialog_edit_message">Seguro que quieres actualizar esta persona</string>
     <string name="seleccioanr_fecha">Seleccionar fecha</string>
     <string name="snackbar_undo">Deshacer</string>
     <string name="undo_delete">Persona recuperada</string>
     <string name="persona_eliminada">Persona eliminada</string>
     <string name="error_eliminar_persona">Error al eliminar la persona</string>
     <string name="persona_editada">Persona editada</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="dialog_acerca_de_title">Acerca de</string>
+    <string name="dialog_acerca_de_content">"Aplicacion desarollada por Jorge Martín Llorente para el modulo Programacion multimedia y dispositivos moviles"</string>
+    <string name="dialog_dismiss">Cancel</string>
+    <string name="github">Mi perfil de GitHub</string>
 </resources>

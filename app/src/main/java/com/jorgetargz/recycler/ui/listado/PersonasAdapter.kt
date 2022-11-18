@@ -12,7 +12,7 @@ import com.jorgetargz.recycler.ui.common.inflate
 
 class PersonasAdapter(
     private val listActions: ListActions
-) : ListAdapter<Persona, PersonasAdapter.ItemViewholder>(DiffCallback())  {
+) : ListAdapter<Persona, PersonasAdapter.ItemViewholder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
         return ItemViewholder(
@@ -28,8 +28,8 @@ class PersonasAdapter(
 
     class ItemViewholder(
         itemView: View,
-        private val listActions: ListActions)
-        : RecyclerView.ViewHolder(itemView) {
+        private val listActions: ListActions
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = ItemPersonaBinding.bind(itemView)
 
@@ -45,9 +45,8 @@ class PersonasAdapter(
                 listActions.editPersona(binding.tvEmail.text.toString())
             }
         }
-
-
     }
+
     class DiffCallback : DiffUtil.ItemCallback<Persona>() {
         override fun areItemsTheSame(oldItem: Persona, newItem: Persona): Boolean {
             return oldItem.email == newItem.email

@@ -9,6 +9,7 @@ sealed class MainEvent {
         val telefono: String,
         val fnacimiento: String,
     ) : MainEvent()
+
     class UndoAddPersona(val persona: Persona) : MainEvent()
     object CleanInputFields : MainEvent()
     object ClearState : MainEvent()
