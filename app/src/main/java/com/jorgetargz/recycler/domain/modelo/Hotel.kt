@@ -1,12 +1,10 @@
 package com.jorgetargz.recycler.domain.modelo
 
 import com.jorgetargz.recycler.domain.common.Constantes
-import java.time.LocalDate
 
-data class Persona(
-    val email: String = Constantes.EMPTY_STRING,
+data class Hotel(
+    val cif: String = Constantes.EMPTY_STRING,
     val nombre: String = Constantes.EMPTY_STRING,
-    var fnacimiento: LocalDate? = null,
+    var estrellas: Int = 0,
     val telefono: String = Constantes.EMPTY_STRING,
 )
-

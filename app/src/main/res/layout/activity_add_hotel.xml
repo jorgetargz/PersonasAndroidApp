@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.edit_persona.EditPersonaActivity">
+    tools:context=".ui.add_hotel.AddHotelActivity">
 
     <ImageView
         android:id="@+id/imageViewPersonas"
@@ -18,25 +18,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldEmail"
+        android:id="@+id/textFieldCIF"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
+        android:hint="@string/CIF"
         app:errorEnabled="true"
-        app:helperText="@string/helper_text_email"
+        app:helperText="@string/helper_text_CIF"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/textFieldNombre"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTopImagePersonas"
-        app:startIconDrawable="@drawable/envelope_open_regular">
+        app:startIconDrawable="@drawable/briefcase_solid">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:maxLines="1"
             android:textColorHint="#5C6BC0" />
 
@@ -49,14 +48,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/nombre"
         app:errorEnabled="true"
-        app:helperText="@string/helper_text_nombre"
+        app:helperText="@string/helper_text_nombre_hotel"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/textFieldTelefono"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail"
-        app:startIconDrawable="@drawable/person_solid">
+        app:layout_constraintTop_toBottomOf="@+id/textFieldCIF"
+        app:startIconDrawable="@drawable/hotel_solid">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -78,7 +77,7 @@
         app:helperText="@string/helper_text_telefono"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/textFieldFNacimiento"
+        app:layout_constraintBottom_toTopOf="@+id/textFieldEstrellas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/textFieldNombre"
@@ -94,55 +93,53 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldFNacimiento"
+        android:id="@+id/textFieldEstrellas"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/fnacimiento"
+        android:hint="@string/estrellas"
         app:errorEnabled="true"
-        app:helperText="@string/helper_text_fnacimiento"
+        app:helperText="@string/helper_text_estrellas"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/containedButtonSelectDate"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottomImagePersonas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/textFieldTelefono"
-        app:startIconDrawable="@drawable/cake_candles_solid">
+        app:startIconDrawable="@drawable/star_solid">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
+            android:inputType="number"
             android:maxLines="1"
             android:textColorHint="#7E57C2" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/containedButtonSelectDate"
+        android:id="@+id/containedButtonAddPerson"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seleccioanr_fecha"
-        app:icon="@drawable/calendar_solid"
-        app:layout_constraintBottom_toTopOf="@id/guidelineBottomImagePersonas"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
-        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldFNacimiento" />
-
-
-    <Button
-        android:id="@+id/containedButtonEditPerson"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/actualizarPersona"
-        app:icon="@drawable/arrows_rotate_solid"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTopImageHoteles"
+        android:text="@string/añadirHotel"
+        app:icon="@drawable/hotel_solid"
+        app:layout_constraintBottom_toTopOf="@+id/containedButtonClean"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toTopOf="@+id/guidelineBottomImagePersonas" />
 
+    <Button
+        android:id="@+id/containedButtonClean"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/limpiarCampos"
+        app:icon="@drawable/circle_xmark_regular"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopImageHoteles"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        app:layout_constraintTop_toBottomOf="@+id/containedButtonAddPerson" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineIzquierda"
@@ -163,20 +160,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.13" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottomImagePersonas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
+        app:layout_constraintGuide_percent="0.64" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopImageHoteles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.89" />
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomImageHoteles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95281583" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

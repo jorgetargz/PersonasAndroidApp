@@ -5,6 +5,9 @@ object Constantes {
     const val PERSONA_EDITED: String = "persona_editada"
     const val PERSONA_DELETED: String = "Persona eliminada"
     const val PERSONA_ADDED: String = "Persona agregada"
+    const val HOTEL_ADDED: String = "Hotel añadido"
+    const val HOTEL_DELETED: String = "Hotel eliminado"
+    const val HOTEL_EDITED: String = "Hotel editado"
     const val EMPTY_STRING = ""
     const val EMAIL = "email"
     const val INSTANCE = "::Instance"
@@ -15,6 +18,8 @@ object Constantes {
     const val ON_RESTORE_INSTANCE_STATE = "onRestoreInstanceState"
     const val IMAGE_PERSONAL =
         "https://seopressor.com/wp-content/uploads/2015/11/buyer-persona04.jpg"
+    const val IMAGE_SKYSCRAPERS: String =
+        "https://static.vecteezy.com/system/resources/thumbnails/002/962/168/small/free-hand-sketch-of-new-york-city-skyline-free-vector.jpg"
     const val GITHUB_PROFILE_URL = "https://github.com/jorgetargz"
     const val NAMED_INJECT_STRING_PROVIDER = "string_provider"
 }

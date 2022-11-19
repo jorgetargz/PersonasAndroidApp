@@ -48,7 +48,7 @@ class EditPersonaActivity : AppCompatActivity() {
                 )
             }
 
-            imageView.loadUrl(Constantes.IMAGE_PERSONAL)
+            imageViewPersonas.loadUrl(Constantes.IMAGE_PERSONAL)
 
             containedButtonSelectDate.setOnClickListener {
                 val datePicker =

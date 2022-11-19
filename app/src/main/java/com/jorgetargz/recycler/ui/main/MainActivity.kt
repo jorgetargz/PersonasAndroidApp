@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ActivityMainBinding
+import com.jorgetargz.recycler.ui.add_hotel.AddHotelActivity
 import com.jorgetargz.recycler.ui.add_persona.AddPersonaActivity
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             setContentView(root)
 
-            imageView.loadUrl(Constantes.IMAGE_PERSONAL)
+            imageViewPersonas.loadUrl(Constantes.IMAGE_PERSONAL)
+
+            imageViewHoteles.loadUrl(Constantes.IMAGE_SKYSCRAPERS)
 
             containedButtonAddPerson.setOnClickListener {
                 temp++
@@ -44,12 +47,18 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            containedButtonAddHotel.setOnClickListener {
+                temp++
+                val intent = Intent(this@MainActivity, AddHotelActivity::class.java)
+                startActivity(intent)
+            }
 
             containedButtonOpenListPersonas.setOnClickListener {
                 temp++
                 val intent = Intent(this@MainActivity, ListPersonaActivity::class.java)
                 startActivity(intent)
             }
+
         }
 
         viewModel.uiState.observe(this) { state ->

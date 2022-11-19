@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.data.common
+package com.jorgetargz.recycler.data.room.common
 
 object Constantes {
     const val DATABASE_NAME = "personas_database"

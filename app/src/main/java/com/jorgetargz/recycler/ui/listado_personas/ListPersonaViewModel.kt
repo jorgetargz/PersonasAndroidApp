@@ -5,7 +5,7 @@ import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.domain.modelo.Persona
 import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
-import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
+import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaByEmailUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.GetPersonasUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
@@ -21,7 +21,7 @@ class ListPersonaViewModel @Inject constructor(
     private val getPersonasUseCase: GetPersonasUseCase,
     private val deletePersonaUseCase: DeletePersonaUseCase,
     private val addPersonaUseCase: AddPersonaUseCase,
-    private val getPersonaUseCase: GetPersonaUseCase,
+    private val getPersonaByEmailUseCase: GetPersonaByEmailUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
@@ -37,7 +37,7 @@ class ListPersonaViewModel @Inject constructor(
     private fun deletePerson(email: String) {
         viewModelScope.launch {
             try {
-                val persona = getPersonaUseCase.invoke(email)
+                val persona = getPersonaByEmailUseCase.invoke(email)
                 deletePersonaUseCase.invoke(persona)
                 _uiState.value = _uiState.value?.copy(
                     personaDeleted = persona,

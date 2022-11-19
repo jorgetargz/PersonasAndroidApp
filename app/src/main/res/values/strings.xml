@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Personas DB</string>
-    <string name="openDatabase">Mostrar personas</string>
+    <string name="openDatabasePersonas">Mostrar personas</string>
+    <string name="openDatabaseHoteles">Mostrar hoteles</string>
     <string name="añadirPersona">Añadir persona</string>
     <string name="telefono">Telefono</string>
     <string name="helper_text_telefono">+34698724049</string>
@@ -36,4 +37,14 @@
     <string name="dialog_acerca_de_content">"Aplicacion desarollada por Jorge Martín Llorente para el modulo Programacion multimedia y dispositivos moviles"</string>
     <string name="dialog_dismiss">Cancel</string>
     <string name="github">Mi perfil de GitHub</string>
+    <string name="añadirHotel">Añadir hotel</string>
+    <string name="skyline">Skyline</string>
+    <string name="CIF">CIF</string>
+    <string name="helper_text_CIF">B12345678</string>
+    <string name="helper_text_nombre_hotel">Hotel Palas</string>
+    <string name="estrellas">Estrellas</string>
+    <string name="helper_text_estrellas">1–5</string>
+    <string name="hotel_añadido">Hotel añadido</string>
+    <string name="cif_incorrecto">CIF no valido</string>
+    <string name="estrellas_incorrecta">1–5</string>
 </resources>

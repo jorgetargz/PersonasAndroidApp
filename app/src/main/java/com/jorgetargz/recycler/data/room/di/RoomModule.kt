@@ -1,10 +1,12 @@
-package com.jorgetargz.recycler.data.di
+package com.jorgetargz.recycler.data.room.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jorgetargz.recycler.data.AppDatabase
-import com.jorgetargz.recycler.data.PersonasDao
-import com.jorgetargz.recycler.data.common.Constantes
+import com.jorgetargz.recycler.data.room.AppDatabase
+import com.jorgetargz.recycler.data.room.HotelesDao
+import com.jorgetargz.recycler.data.room.PersonaHotelDao
+import com.jorgetargz.recycler.data.room.PersonasDao
+import com.jorgetargz.recycler.data.room.common.Constantes
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,6 +39,14 @@ object RoomModule {
     @Provides
     fun providesPersonaDao(personasDB: AppDatabase): PersonasDao =
         personasDB.personasDao()
+
+    @Provides
+    fun providesPersonaHotelDao(personasDB: AppDatabase): PersonaHotelDao =
+        personasDB.personaHotelDao()
+
+    @Provides
+    fun providesHotelesDao(personasDB: AppDatabase): HotelesDao =
+        personasDB.hotelesDao()
 
 
 }

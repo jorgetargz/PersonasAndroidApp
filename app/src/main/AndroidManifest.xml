@@ -39,6 +39,10 @@
         <activity
             android:name=".ui.edit_persona.EditPersonaActivity"
             android:parentActivityName=".ui.listado_personas.ListPersonaActivity" />
+
+        <activity
+            android:name=".ui.add_hotel.AddHotelActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
     </application>
 
 </manifest>

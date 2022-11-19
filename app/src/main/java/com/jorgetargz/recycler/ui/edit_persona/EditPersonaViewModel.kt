@@ -3,7 +3,7 @@ package com.jorgetargz.recycler.ui.edit_persona
 import androidx.lifecycle.*
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.domain.modelo.Persona
-import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaUseCase
+import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaByEmailUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.UpdatePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.ValidarPersonaUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
@@ -20,7 +20,7 @@ class EditPersonaViewModel @Inject constructor(
     @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val validarPersonaUseCase: ValidarPersonaUseCase,
-    private val getPersonaUseCase: GetPersonaUseCase,
+    private val getPersonaByEmailUseCase: GetPersonaByEmailUseCase,
     private val updatePersonaUseCase: UpdatePersonaUseCase,
 ) : ViewModel() {
 
@@ -44,7 +44,7 @@ class EditPersonaViewModel @Inject constructor(
                 telefono
             )
             viewModelScope.launch {
-                val personaDatabase = getPersonaUseCase.invoke(email)
+                val personaDatabase = getPersonaByEmailUseCase.invoke(email)
                 try {
                     updatePersonaUseCase.invoke(personaNueva)
                     _uiState.value = _uiState.value?.copy(
@@ -88,7 +88,7 @@ class EditPersonaViewModel @Inject constructor(
 
     private fun loadPerson(email: String) {
         viewModelScope.launch {
-            val persona = getPersonaUseCase.invoke(email)
+            val persona = getPersonaByEmailUseCase.invoke(email)
             _uiState.value = persona.let { p ->
                 _uiState.value?.copy(
                     personaMostrar = p,

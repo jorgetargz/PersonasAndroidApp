@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.add_persona.AddPersonaActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewPersonas"
         android:layout_width="242dp"
         android:layout_height="87dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTopFields"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopImagePersonas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textFieldNombre"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineTopFields"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTopImagePersonas"
         app:startIconDrawable="@drawable/envelope_open_regular">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:text="@string/seleccioanr_fecha"
         app:icon="@drawable/calendar_solid"
-        app:layout_constraintBottom_toTopOf="@id/guidelineBottomFields"
+        app:layout_constraintBottom_toTopOf="@id/guidelineBottomImagePersonas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/textFieldFNacimiento" />
@@ -139,7 +139,7 @@
         app:layout_constraintBottom_toTopOf="@+id/containedButtonClean"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBottomFields" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottomImagePersonas" />
 
     <Button
         android:id="@+id/containedButtonClean"
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:text="@string/limpiarCampos"
         app:icon="@drawable/circle_xmark_regular"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTopNavigation"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopImageHoteles"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/containedButtonAddPerson" />
@@ -168,28 +168,28 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTopFields"
+        android:id="@+id/guidelineTopImagePersonas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.12" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottomFields"
+        android:id="@+id/guidelineBottomImagePersonas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTopNavigation"
+        android:id="@+id/guidelineTopImageHoteles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8569254" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottomNavigation"
+        android:id="@+id/guidelineBottomImageHoteles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

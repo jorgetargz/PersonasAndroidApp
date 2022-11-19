@@ -41,7 +41,7 @@ class PersonasAdapter(
                 listPersonaActions.deletePersona(binding.tvEmail.text.toString())
             }
 
-            buttonUpdate.setOnClickListener {
+            buttonView.setOnClickListener {
                 listPersonaActions.editPersona(binding.tvEmail.text.toString())
             }
         }
