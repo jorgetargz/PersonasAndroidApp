@@ -13,7 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.ui.common.Constantes
-import com.jorgetargz.recycler.ui.edit_persona.EditPersonaActivity
+import com.jorgetargz.recycler.ui.edit_hotel.EditHotelActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -28,7 +28,7 @@ class ListHotelesActivity : AppCompatActivity() {
 
     inner class ListHotelesActionsImpl : ListHotelesActions {
         override fun editHotel(cif: String) {
-            val intent = Intent(this@ListHotelesActivity, EditPersonaActivity::class.java)
+            val intent = Intent(this@ListHotelesActivity, EditHotelActivity::class.java)
             intent.putExtra(Constantes.CIF, cif)
             startActivity(intent)
         }

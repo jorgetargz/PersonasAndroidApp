@@ -52,4 +52,6 @@
     <string name="cif">CIF</string>
     <string name="deleteHotel">Delete Hotel</string>
     <string name="updateHotel">Update Hotel</string>
+    <string name="hotel_actualizado">Hotel actualizado</string>
+    <string name="actualizarHotel">Actualizar Hotel</string>
 </resources>
