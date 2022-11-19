@@ -25,10 +25,10 @@ class EditPersonaViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
-        EditPerosnaState(null, Persona(), null)
+        EditPersonaState(null, Persona(), null)
     )
 
-    val uiState: LiveData<EditPerosnaState> get() = _uiState
+    val uiState: LiveData<EditPersonaState> get() = _uiState
 
     private fun editPersona(email: String, nombre: String, telefono: String, fnacimiento: String) {
         val errorValidacion =

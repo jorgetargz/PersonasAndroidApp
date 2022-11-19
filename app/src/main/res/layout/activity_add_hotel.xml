@@ -7,7 +7,7 @@
     tools:context=".ui.add_hotel.AddHotelActivity">
 
     <ImageView
-        android:id="@+id/imageViewPersonas"
+        android:id="@+id/imageViewSkyline"
         android:layout_width="242dp"
         android:layout_height="87dp"
         android:contentDescription="@string/app_name"

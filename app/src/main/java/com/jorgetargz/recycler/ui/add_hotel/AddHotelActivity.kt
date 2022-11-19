@@ -34,7 +34,7 @@ class AddHotelActivity : AppCompatActivity() {
         with(binding) {
             setContentView(root)
 
-            imageViewPersonas.loadUrl(Constantes.IMAGE_SKYSCRAPERS)
+            imageViewSkyline.loadUrl(Constantes.IMAGE_SKYSCRAPERS)
 
             containedButtonAddPerson.setOnClickListener {
                 viewModel.handleEvent(
