@@ -23,6 +23,7 @@ class ListPersonaActivity : AppCompatActivity() {
 
     private lateinit var rvPersonas: RecyclerView
     private val stringProvider = StringProvider(this)
+    private var cifHotel: String? = null
 
     private val viewModel: ListPersonaViewModel by viewModels()
 
@@ -48,7 +49,13 @@ class ListPersonaActivity : AppCompatActivity() {
         rvPersonas.adapter = adapter
         rvPersonas.layoutManager = GridLayoutManager(this, 1)
 
-        viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
+        cifHotel = intent.extras?.getString(Constantes.CIF)
+        if (cifHotel != null) {
+            viewModel.handleEvent(ListPersonaEvent.LoadPersonasByHotelCif(cifHotel!!))
+        } else {
+            viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
+        }
+
         viewModel.uiState.observe(this) { state ->
             state.mensaje?.let { mensaje ->
                 Timber.i(mensaje)
@@ -76,7 +83,11 @@ class ListPersonaActivity : AppCompatActivity() {
 
     public override fun onResume() {
         super.onResume()
-        viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
+        if (cifHotel != null) {
+            viewModel.handleEvent(ListPersonaEvent.LoadPersonasByHotelCif(cifHotel!!))
+        } else {
+            viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

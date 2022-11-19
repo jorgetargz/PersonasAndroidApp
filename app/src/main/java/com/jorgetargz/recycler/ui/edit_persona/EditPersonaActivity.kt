@@ -14,6 +14,7 @@ import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ActivityEditPersonaBinding
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
+import com.jorgetargz.recycler.ui.listado_hoteles.ListHotelesActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -26,6 +27,7 @@ class EditPersonaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditPersonaBinding
     private val stringProvider = StringProvider(this)
+    private var emailPersona: String? = null
 
     private val viewModel: EditPersonaViewModel by viewModels()
 
@@ -34,9 +36,12 @@ class EditPersonaActivity : AppCompatActivity() {
         binding = ActivityEditPersonaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.handleEvent(EditPersonaEvent.LoadPersona(intent.extras?.getString(Constantes.EMAIL)!!))
+        emailPersona = intent.extras?.getString(Constantes.EMAIL)
+        viewModel.handleEvent(EditPersonaEvent.LoadPersona(emailPersona!!))
 
         with(binding) {
+            imageViewPersonas.loadUrl(Constantes.IMAGE_PERSONAL)
+
             containedButtonEditPerson.setOnClickListener {
                 viewModel.handleEvent(
                     EditPersonaEvent.EditPersona(
@@ -48,7 +53,11 @@ class EditPersonaActivity : AppCompatActivity() {
                 )
             }
 
-            imageViewPersonas.loadUrl(Constantes.IMAGE_PERSONAL)
+            containedButtonOpenListHoteles.setOnClickListener {
+                val intent = Intent(this@EditPersonaActivity, ListHotelesActivity::class.java)
+                intent.putExtra(Constantes.EMAIL, emailPersona)
+                startActivity(intent)
+            }
 
             containedButtonSelectDate.setOnClickListener {
                 val datePicker =

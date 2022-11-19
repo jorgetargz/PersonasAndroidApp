@@ -13,6 +13,7 @@ import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ActivityEditHotelBinding
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
+import com.jorgetargz.recycler.ui.listado_personas.ListPersonaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -22,6 +23,7 @@ class EditHotelActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditHotelBinding
     private val stringProvider = StringProvider(this)
+    private var cifHotel: String? = null
 
     private val viewModel: EditHotelViewModel by viewModels()
 
@@ -30,7 +32,8 @@ class EditHotelActivity : AppCompatActivity() {
         binding = ActivityEditHotelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.handleEvent(EditHotelEvent.LoadHotel(intent.extras?.getString(Constantes.CIF)!!))
+        cifHotel = intent.extras?.getString(Constantes.CIF)
+        viewModel.handleEvent(EditHotelEvent.LoadHotel(cifHotel!!))
 
         with(binding) {
             containedButtonEditHotel.setOnClickListener {
@@ -42,6 +45,12 @@ class EditHotelActivity : AppCompatActivity() {
                         binding.textFieldEstrellas.editText?.text.toString(),
                     )
                 )
+            }
+
+            containedButtonOpenListPersonas.setOnClickListener {
+                val intent = Intent(this@EditHotelActivity, ListPersonaActivity::class.java)
+                intent.putExtra(Constantes.CIF, cifHotel)
+                startActivity(intent)
             }
 
             imageViewSkyline.loadUrl(Constantes.IMAGE_SKYSCRAPERS)

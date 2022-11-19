@@ -3,6 +3,8 @@ package com.jorgetargz.recycler.ui.listado_personas
 import androidx.lifecycle.*
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.domain.modelo.Persona
+import com.jorgetargz.recycler.domain.usecases.hoteles.GetHotelByCIF
+import com.jorgetargz.recycler.domain.usecases.hoteles.GetPersonasByHotelUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.AddPersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.DeletePersonaUseCase
 import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaByEmailUseCase
@@ -22,6 +24,8 @@ class ListPersonaViewModel @Inject constructor(
     private val deletePersonaUseCase: DeletePersonaUseCase,
     private val addPersonaUseCase: AddPersonaUseCase,
     private val getPersonaByEmailUseCase: GetPersonaByEmailUseCase,
+    private val getPersonasByHotelUseCase: GetPersonasByHotelUseCase,
+    private val getHotelByCIF: GetHotelByCIF,
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
@@ -65,10 +69,27 @@ class ListPersonaViewModel @Inject constructor(
     }
 
     private fun loadPersonas() {
-        viewModelScope.launch {
-            _uiState.value = _uiState.value?.copy(
-                lista = getPersonasUseCase.invoke(),
-            )
+        try {
+            viewModelScope.launch {
+                _uiState.value = _uiState.value?.copy(
+                    lista = getPersonasUseCase.invoke(),
+                )
+            }
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value?.copy(mensaje = e.message)
+        }
+    }
+
+    private fun loadPersonasByHotelCIF(cifHotel: String) {
+        try {
+            viewModelScope.launch {
+                val hotel = getHotelByCIF.invoke(cifHotel)
+                _uiState.value = _uiState.value?.copy(
+                    lista = getPersonasByHotelUseCase.invoke(hotel),
+                )
+            }
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value?.copy(mensaje = e.message)
         }
     }
 
@@ -78,6 +99,7 @@ class ListPersonaViewModel @Inject constructor(
             is ListPersonaEvent.UndoDeletePersona -> undoDelete(event.persona)
             is ListPersonaEvent.LoadPersonas -> loadPersonas()
             is ListPersonaEvent.ClearState -> clearState()
+            is ListPersonaEvent.LoadPersonasByHotelCif -> loadPersonasByHotelCIF(event.cifHotel)
         }
     }
 }

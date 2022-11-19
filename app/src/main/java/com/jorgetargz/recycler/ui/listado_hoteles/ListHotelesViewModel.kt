@@ -7,6 +7,8 @@ import com.jorgetargz.recycler.domain.usecases.hoteles.AddHotelUseCase
 import com.jorgetargz.recycler.domain.usecases.hoteles.DeleteHotelUseCase
 import com.jorgetargz.recycler.domain.usecases.hoteles.GetHotelByCIF
 import com.jorgetargz.recycler.domain.usecases.hoteles.GetHotelesUseCase
+import com.jorgetargz.recycler.domain.usecases.personas.GetHotelesByPersonaUseCase
+import com.jorgetargz.recycler.domain.usecases.personas.GetPersonaByEmailUseCase
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +21,12 @@ class ListHotelesViewModel @Inject constructor(
     @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val getHotelesUseCase: GetHotelesUseCase,
+    private val getPersonaByEmailUseCase: GetPersonaByEmailUseCase,
+    private val getHotelesByPersonaUseCase: GetHotelesByPersonaUseCase,
     private val getHotelByCIF: GetHotelByCIF,
     private val addHotelUseCase: AddHotelUseCase,
     private val deleteHotelUseCase: DeleteHotelUseCase,
 ) : ViewModel() {
-
     private val _uiState = MutableLiveData(
         ListHotelesState(null, null, null)
     )
@@ -33,6 +36,33 @@ class ListHotelesViewModel @Inject constructor(
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, hotelDeleted = null)
     }
+
+    private fun loadHoteles() {
+        try {
+            viewModelScope.launch {
+                _uiState.value = _uiState.value?.copy(
+                    lista = getHotelesUseCase.invoke(),
+                )
+            }
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value?.copy(mensaje = e.message)
+        }
+    }
+
+
+    private fun loadHotelesByPersonaEmail(email: String) {
+        try {
+            viewModelScope.launch {
+                val persona = getPersonaByEmailUseCase.invoke(email)
+                _uiState.value = _uiState.value?.copy(
+                    lista = getHotelesByPersonaUseCase.invoke(persona),
+                )
+            }
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value?.copy(mensaje = e.message)
+        }
+    }
+
 
     private fun deleteHotel(cif: String) {
         viewModelScope.launch {
@@ -64,20 +94,13 @@ class ListHotelesViewModel @Inject constructor(
         }
     }
 
-    private fun loadHoteles() {
-        viewModelScope.launch {
-            _uiState.value = _uiState.value?.copy(
-                lista = getHotelesUseCase.invoke(),
-            )
-        }
-    }
-
     fun handleEvent(event: ListHotelesEvent) {
         when (event) {
             is ListHotelesEvent.DeleteHotel -> deleteHotel(event.cif)
             is ListHotelesEvent.UndoDeleteHotel -> undoDelete(event.hotel)
             is ListHotelesEvent.LoadHoteles -> loadHoteles()
             is ListHotelesEvent.ClearState -> clearState()
+            is ListHotelesEvent.LoadHotelesByPersonaEmail -> loadHotelesByPersonaEmail(event.email)
         }
     }
 }

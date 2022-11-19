@@ -22,7 +22,7 @@ class RepositorioHoteles @Inject constructor(
     suspend fun deleteHotel(hotel: Hotel) = hotelesDao.delete(hotel.toHotelEntity())
 
     suspend fun getPersonasOfHotel(hotel: Hotel) =
-        hotelesDao.getPersonasOfHotel(hotel.cif).map { it.personas.map { it.toPersona() } }
+        hotelesDao.getPersonasOfHotel(hotel.cif).flatMap { it.personas.map { it.toPersona() } }
 
 
 }

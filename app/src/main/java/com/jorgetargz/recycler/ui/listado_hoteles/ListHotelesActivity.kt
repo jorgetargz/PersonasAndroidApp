@@ -23,6 +23,7 @@ class ListHotelesActivity : AppCompatActivity() {
 
     private lateinit var rvHoteles: RecyclerView
     private val stringProvider = StringProvider(this)
+    private var emailPersona: String? = null
 
     private val viewModel: ListHotelesViewModel by viewModels()
 
@@ -48,7 +49,13 @@ class ListHotelesActivity : AppCompatActivity() {
         rvHoteles.adapter = adapter
         rvHoteles.layoutManager = GridLayoutManager(this, 1)
 
-        viewModel.handleEvent(ListHotelesEvent.LoadHoteles)
+        emailPersona = intent.extras?.getString(Constantes.EMAIL)
+        if (emailPersona != null) {
+            viewModel.handleEvent(ListHotelesEvent.LoadHotelesByPersonaEmail(emailPersona!!))
+        } else {
+            viewModel.handleEvent(ListHotelesEvent.LoadHoteles)
+        }
+
         viewModel.uiState.observe(this) { state ->
             state.mensaje?.let { mensaje ->
                 Timber.i(mensaje)
@@ -76,7 +83,11 @@ class ListHotelesActivity : AppCompatActivity() {
 
     public override fun onResume() {
         super.onResume()
-        viewModel.handleEvent(ListHotelesEvent.LoadHoteles)
+        if (emailPersona != null) {
+            viewModel.handleEvent(ListHotelesEvent.LoadHotelesByPersonaEmail(emailPersona!!))
+        } else {
+            viewModel.handleEvent(ListHotelesEvent.LoadHoteles)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

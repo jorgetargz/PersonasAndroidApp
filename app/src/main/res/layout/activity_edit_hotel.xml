@@ -131,6 +131,19 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineBottomImagePersonas" />
 
 
+    <Button
+        android:id="@+id/containedButtonOpenListPersonas"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/openDatabasePersonas"
+        app:icon="@drawable/arrow_right_long_solid"
+        app:iconGravity="textEnd"
+        app:layout_constraintBottom_toBottomOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTopImageHoteles" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineIzquierda"
         android:layout_width="wrap_content"
@@ -157,13 +170,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopImageHoteles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.87" />
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="679dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
