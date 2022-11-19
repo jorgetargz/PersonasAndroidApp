@@ -9,7 +9,7 @@ data class PersonaConHoteles(
     val person: PersonaEntity,
     @Relation(
         parentColumn = "email",
-        entityColumn = "CIF",
+        entityColumn = "cif",
         associateBy = Junction(PersonaHotelCrossRef::class)
     )
     val hotels: List<HotelEntity>

@@ -15,6 +15,7 @@ import com.jorgetargz.recycler.ui.add_hotel.AddHotelActivity
 import com.jorgetargz.recycler.ui.add_persona.AddPersonaActivity
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
+import com.jorgetargz.recycler.ui.listado_hoteles.ListHotelesActivity
 import com.jorgetargz.recycler.ui.listado_personas.ListPersonaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,6 +57,12 @@ class MainActivity : AppCompatActivity() {
             containedButtonOpenListPersonas.setOnClickListener {
                 temp++
                 val intent = Intent(this@MainActivity, ListPersonaActivity::class.java)
+                startActivity(intent)
+            }
+
+            containedButtonOpenListHoteles.setOnClickListener {
+                temp++
+                val intent = Intent(this@MainActivity, ListHotelesActivity::class.java)
                 startActivity(intent)
             }
 

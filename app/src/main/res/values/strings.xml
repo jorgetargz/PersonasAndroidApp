@@ -28,7 +28,7 @@
     <string name="date_picker_title">Elije una fecha</string>
     <string name="seleccioanr_fecha">Seleccionar fecha</string>
     <string name="snackbar_undo">Deshacer</string>
-    <string name="undo_delete">Persona recuperada</string>
+    <string name="undo_delete_persona">Persona recuperada</string>
     <string name="persona_eliminada">Persona eliminada</string>
     <string name="error_eliminar_persona">Error al eliminar la persona</string>
     <string name="persona_editada">Persona editada</string>
@@ -47,4 +47,9 @@
     <string name="hotel_añadido">Hotel añadido</string>
     <string name="cif_incorrecto">CIF no valido</string>
     <string name="estrellas_incorrecta">1–5</string>
+    <string name="hotel_borrado">Hotel Eliminado</string>
+    <string name="undo_delete_hotel">Hotel recuperado</string>
+    <string name="cif">CIF</string>
+    <string name="deleteHotel">Delete Hotel</string>
+    <string name="updateHotel">Update Hotel</string>
 </resources>

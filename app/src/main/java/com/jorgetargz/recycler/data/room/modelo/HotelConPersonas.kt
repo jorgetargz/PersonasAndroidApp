@@ -8,7 +8,7 @@ class HotelConPersonas(
     @Embedded
     val hotel: HotelEntity,
     @Relation(
-        parentColumn = "CIF",
+        parentColumn = "cif",
         entityColumn = "email",
         associateBy = Junction(PersonaHotelCrossRef::class)
     )

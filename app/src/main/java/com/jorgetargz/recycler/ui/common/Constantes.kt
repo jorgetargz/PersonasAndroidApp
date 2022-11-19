@@ -10,6 +10,7 @@ object Constantes {
     const val HOTEL_EDITED: String = "Hotel editado"
     const val EMPTY_STRING = ""
     const val EMAIL = "email"
+    const val CIF = "CIF"
     const val INSTANCE = "::Instance"
     const val DATE_FORMAT = "dd/MM/yyyy"
     const val COUNT_KEY = "COUNT_KEY"

@@ -1,6 +1,7 @@
 package com.jorgetargz.recycler.data
 
 import com.jorgetargz.recycler.data.room.HotelesDao
+import com.jorgetargz.recycler.data.room.utils.toHotel
 import com.jorgetargz.recycler.data.room.utils.toHotelEntity
 import com.jorgetargz.recycler.data.room.utils.toPersona
 import com.jorgetargz.recycler.domain.modelo.Hotel
@@ -10,9 +11,9 @@ class RepositorioHoteles @Inject constructor(
     private val hotelesDao: HotelesDao,
 ) {
 
-    suspend fun getHoteles() = hotelesDao.getAll()
+    suspend fun getHoteles() = hotelesDao.getAll().map { it.toHotel() }
 
-    suspend fun getHotelByCIF(cif: String) = hotelesDao.findByCIF(cif)
+    suspend fun getHotelByCIF(cif: String) = hotelesDao.findByCIF(cif).toHotel()
 
     suspend fun insertHotel(hotel: Hotel) = hotelesDao.insert(hotel.toHotelEntity())
 

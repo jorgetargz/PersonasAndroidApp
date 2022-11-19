@@ -55,7 +55,7 @@ class ListPersonaViewModel @Inject constructor(
                 addPersonaUseCase.invoke(persona)
                 _uiState.value = _uiState.value?.copy(
                     personaDeleted = null,
-                    mensaje = stringProvider.getString(R.string.undo_delete)
+                    mensaje = stringProvider.getString(R.string.undo_delete_persona)
                 )
                 loadPersonas()
             } catch (e: Exception) {
