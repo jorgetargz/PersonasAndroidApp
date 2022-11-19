@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.ui.edit
+package com.jorgetargz.recycler.ui.edit_persona
 
 import androidx.lifecycle.*
 import com.jorgetargz.recycler.R
@@ -16,7 +16,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class EditViewModel @Inject constructor(
+class EditPersonaViewModel @Inject constructor(
     @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val validarPersonaUseCase: ValidarPersonaUseCase,
@@ -25,10 +25,10 @@ class EditViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
-        EditState(null, Persona(), null)
+        EditPerosnaState(null, Persona(), null)
     )
 
-    val uiState: LiveData<EditState> get() = _uiState
+    val uiState: LiveData<EditPerosnaState> get() = _uiState
 
     private fun editPersona(email: String, nombre: String, telefono: String, fnacimiento: String) {
         val errorValidacion =
@@ -97,17 +97,17 @@ class EditViewModel @Inject constructor(
         }
     }
 
-    fun handleEvent(event: EditEvent) {
+    fun handleEvent(event: EditPersonaEvent) {
         when (event) {
-            is EditEvent.EditPersona -> editPersona(
+            is EditPersonaEvent.EditPersona -> editPersona(
                 event.email,
                 event.nombre,
                 event.telefono,
                 event.fnacimiento
             )
-            is EditEvent.UndoEditPersona -> undoEditPersona(event.persona)
-            is EditEvent.ClearState -> clearState()
-            is EditEvent.LoadPersona -> loadPerson(event.email)
+            is EditPersonaEvent.UndoEditPersona -> undoEditPersona(event.persona)
+            is EditPersonaEvent.ClearState -> clearState()
+            is EditPersonaEvent.LoadPersona -> loadPerson(event.email)
         }
     }
 }

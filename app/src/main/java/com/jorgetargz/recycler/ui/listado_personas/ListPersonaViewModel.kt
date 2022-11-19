@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.ui.listado
+package com.jorgetargz.recycler.ui.listado_personas
 
 import androidx.lifecycle.*
 import com.jorgetargz.recycler.R
@@ -15,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class ListPersonaViewModel @Inject constructor(
     @Named(Constantes.NAMED_INJECT_STRING_PROVIDER)
     private val stringProvider: StringProvider,
     private val getPersonasUseCase: GetPersonasUseCase,
@@ -25,10 +25,10 @@ class ListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
-        ListState(null, null, null)
+        ListPersonaState(null, null, null)
     )
 
-    val uiState: LiveData<ListState> = _uiState
+    val uiState: LiveData<ListPersonaState> = _uiState
 
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, personaDeleted = null)
@@ -72,12 +72,12 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun handleEvent(event: ListEvent) {
+    fun handleEvent(event: ListPersonaEvent) {
         when (event) {
-            is ListEvent.DeletePersona -> deletePerson(event.email)
-            is ListEvent.UndoDeletePersona -> undoDelete(event.persona)
-            is ListEvent.LoadPersonas -> loadPersonas()
-            is ListEvent.ClearState -> clearState()
+            is ListPersonaEvent.DeletePersona -> deletePerson(event.email)
+            is ListPersonaEvent.UndoDeletePersona -> undoDelete(event.persona)
+            is ListPersonaEvent.LoadPersonas -> loadPersonas()
+            is ListPersonaEvent.ClearState -> clearState()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.ui.listado
+package com.jorgetargz.recycler.ui.listado_personas
 
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +11,13 @@ import com.jorgetargz.recycler.domain.modelo.Persona
 import com.jorgetargz.recycler.ui.common.inflate
 
 class PersonasAdapter(
-    private val listActions: ListActions
+    private val listPersonaActions: ListPersonaActions
 ) : ListAdapter<Persona, PersonasAdapter.ItemViewholder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
         return ItemViewholder(
             parent.inflate(R.layout.item_persona),
-            listActions
+            listPersonaActions
         )
     }
 
@@ -28,7 +28,7 @@ class PersonasAdapter(
 
     class ItemViewholder(
         itemView: View,
-        private val listActions: ListActions
+        private val listPersonaActions: ListPersonaActions
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = ItemPersonaBinding.bind(itemView)
@@ -38,11 +38,11 @@ class PersonasAdapter(
             tvEmail.text = item.email
 
             buttonDelete.setOnClickListener {
-                listActions.deletePersona(binding.tvEmail.text.toString())
+                listPersonaActions.deletePersona(binding.tvEmail.text.toString())
             }
 
             buttonUpdate.setOnClickListener {
-                listActions.editPersona(binding.tvEmail.text.toString())
+                listPersonaActions.editPersona(binding.tvEmail.text.toString())
             }
         }
     }

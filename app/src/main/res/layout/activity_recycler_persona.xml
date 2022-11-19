@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".ui.listado.ListActivity">
+    tools:context=".ui.listado_personas.ListPersonaActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPersonas"

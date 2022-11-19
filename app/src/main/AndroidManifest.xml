@@ -29,12 +29,16 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.listado.ListActivity"
+            android:name=".ui.listado_personas.ListPersonaActivity"
             android:parentActivityName=".ui.main.MainActivity" />
 
         <activity
-            android:name=".ui.edit.EditActivity"
-            android:parentActivityName=".ui.listado.ListActivity" />
+            android:name=".ui.add_persona.AddPersonaActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <activity
+            android:name=".ui.edit_persona.EditPersonaActivity"
+            android:parentActivityName=".ui.listado_personas.ListPersonaActivity" />
     </application>
 
 </manifest>

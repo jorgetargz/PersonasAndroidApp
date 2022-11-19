@@ -7,20 +7,17 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ActivityMainBinding
+import com.jorgetargz.recycler.ui.add_persona.AddPersonaActivity
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
-import com.jorgetargz.recycler.ui.listado.ListActivity
+import com.jorgetargz.recycler.ui.listado_personas.ListPersonaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,42 +39,16 @@ class MainActivity : AppCompatActivity() {
             imageView.loadUrl(Constantes.IMAGE_PERSONAL)
 
             containedButtonAddPerson.setOnClickListener {
-                viewModel.handleEvent(
-                    MainEvent.AddPersona(
-                        textFieldEmail.editText?.text.toString(),
-                        textFieldNombre.editText?.text.toString(),
-                        textFieldTelefono.editText?.text.toString(),
-                        textFieldFNacimiento.editText?.text.toString(),
-                    )
-                )
-            }
-
-            containedButtonClean.setOnClickListener {
-                viewModel.handleEvent(MainEvent.CleanInputFields)
-            }
-
-            containedButtonOpenDB.setOnClickListener {
                 temp++
-                val intent = Intent(this@MainActivity, ListActivity::class.java)
+                val intent = Intent(this@MainActivity, AddPersonaActivity::class.java)
                 startActivity(intent)
             }
 
-            containedButtonSelectDate.setOnClickListener {
-                val datePicker =
-                    MaterialDatePicker.Builder.datePicker()
-                        .setTitleText(stringProvider.getString(R.string.date_picker_title))
-                        .build()
-                datePicker.addOnPositiveButtonClickListener { selection ->
-                    val zoneId: ZoneId = ZoneId.systemDefault()
-                    val formatter = DateTimeFormatter.ofPattern(Constantes.DATE_FORMAT)
-                    val selectedDate = Date(selection)
-                    val formattedDate = selectedDate.toInstant()
-                        .atZone(zoneId)
-                        .toLocalDate()
-                        .format(formatter)
-                    textFieldFNacimiento.editText?.setText(formattedDate)
-                }
-                datePicker.show(supportFragmentManager, Constantes.DATE_PICKER_TAG)
+
+            containedButtonOpenListPersonas.setOnClickListener {
+                temp++
+                val intent = Intent(this@MainActivity, ListPersonaActivity::class.java)
+                startActivity(intent)
             }
         }
 
@@ -85,25 +56,6 @@ class MainActivity : AppCompatActivity() {
             state.mensaje?.let { mensaje ->
                 Timber.i(mensaje)
                 Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT).show()
-                clearTextFieldErrors()
-                loadTextFieldErrors(mensaje)
-                viewModel.handleEvent(MainEvent.ClearState)
-
-            }
-            state.personaAdded?.let { persona ->
-                Timber.i(Constantes.PERSONA_ADDED, persona.email)
-                Snackbar.make(
-                    binding.root,
-                    stringProvider.getString(R.string.persona_añadida),
-                    Snackbar.LENGTH_LONG
-                ).setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                    viewModel.handleEvent(MainEvent.UndoAddPersona(persona))
-                }.show()
-                viewModel.handleEvent(MainEvent.ClearState)
-            }
-            if (state.cleanFields) {
-                clearTextFieldErrors()
-                clearTextFields()
                 viewModel.handleEvent(MainEvent.ClearState)
             }
         }
@@ -136,38 +88,6 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-
-    private fun loadTextFieldErrors(error: String) {
-        when (error) {
-            stringProvider.getString(R.string.email_incorrecto) -> {
-                binding.textFieldEmail.error = error
-            }
-            stringProvider.getString(R.string.nombre_incorrecto) -> {
-                binding.textFieldNombre.error = error
-            }
-            stringProvider.getString(R.string.telefono_incorrecto) -> {
-                binding.textFieldTelefono.error = error
-            }
-            stringProvider.getString(R.string.fecha_incorrecta) -> {
-                binding.textFieldFNacimiento.error = error
-            }
-        }
-    }
-
-    private fun clearTextFieldErrors() {
-        binding.textFieldEmail.error = null
-        binding.textFieldNombre.error = null
-        binding.textFieldTelefono.error = null
-        binding.textFieldFNacimiento.error = null
-    }
-
-    private fun clearTextFields() {
-        binding.textFieldEmail.editText?.setText(Constantes.EMPTY_STRING)
-        binding.textFieldNombre.editText?.setText(Constantes.EMPTY_STRING)
-        binding.textFieldFNacimiento.editText?.setText(Constantes.EMPTY_STRING)
-        binding.textFieldTelefono.editText?.setText(Constantes.EMPTY_STRING)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

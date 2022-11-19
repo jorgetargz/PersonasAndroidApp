@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.ui.edit
+package com.jorgetargz.recycler.ui.edit_persona
 
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +11,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
-import com.jorgetargz.recycler.databinding.ActivityEditBinding
+import com.jorgetargz.recycler.databinding.ActivityEditPersonaBinding
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.util.StringProvider
@@ -22,24 +22,24 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
-class EditActivity : AppCompatActivity() {
+class EditPersonaActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEditBinding
+    private lateinit var binding: ActivityEditPersonaBinding
     private val stringProvider = StringProvider(this)
 
-    private val viewModel: EditViewModel by viewModels()
+    private val viewModel: EditPersonaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEditBinding.inflate(layoutInflater)
+        binding = ActivityEditPersonaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.handleEvent(EditEvent.LoadPersona(intent.extras?.getString(Constantes.EMAIL)!!))
+        viewModel.handleEvent(EditPersonaEvent.LoadPersona(intent.extras?.getString(Constantes.EMAIL)!!))
 
         with(binding) {
             containedButtonEditPerson.setOnClickListener {
                 viewModel.handleEvent(
-                    EditEvent.EditPersona(
+                    EditPersonaEvent.EditPersona(
                         intent.getStringExtra(Constantes.EMAIL)!!,
                         binding.textFieldNombre.editText?.text.toString(),
                         binding.textFieldTelefono.editText?.text.toString(),
@@ -75,7 +75,7 @@ class EditActivity : AppCompatActivity() {
                 Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_LONG).show()
                 clearTextFieldErrors()
                 loadTextFieldErrors(mensaje)
-                viewModel.handleEvent(EditEvent.ClearState)
+                viewModel.handleEvent(EditPersonaEvent.ClearState)
             }
             uiState.personaMostrar.let {
                 with(binding) {
@@ -93,9 +93,9 @@ class EditActivity : AppCompatActivity() {
                     stringProvider.getString(R.string.persona_editada),
                     Snackbar.LENGTH_LONG
                 ).setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                    viewModel.handleEvent(EditEvent.UndoEditPersona(persona))
+                    viewModel.handleEvent(EditPersonaEvent.UndoEditPersona(persona))
                 }.show()
-                viewModel.handleEvent(EditEvent.ClearState)
+                viewModel.handleEvent(EditPersonaEvent.ClearState)
             }
         }
     }

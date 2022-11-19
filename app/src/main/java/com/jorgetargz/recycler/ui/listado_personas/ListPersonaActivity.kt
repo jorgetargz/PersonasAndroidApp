@@ -1,4 +1,4 @@
-package com.jorgetargz.recycler.ui.listado
+package com.jorgetargz.recycler.ui.listado_personas
 
 import android.content.Intent
 import android.net.Uri
@@ -13,47 +13,47 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.ui.common.Constantes
-import com.jorgetargz.recycler.ui.edit.EditActivity
+import com.jorgetargz.recycler.ui.edit_persona.EditPersonaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class ListActivity : AppCompatActivity() {
+class ListPersonaActivity : AppCompatActivity() {
 
     private lateinit var rvPersonas: RecyclerView
     private val stringProvider = StringProvider(this)
 
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModel: ListPersonaViewModel by viewModels()
 
-    inner class ListActionsImpl : ListActions {
+    inner class ListPersonaActionsImpl : ListPersonaActions {
         override fun editPersona(email: String) {
-            val intent = Intent(this@ListActivity, EditActivity::class.java)
+            val intent = Intent(this@ListPersonaActivity, EditPersonaActivity::class.java)
             intent.putExtra(Constantes.EMAIL, email)
             startActivity(intent)
         }
 
         override fun deletePersona(email: String) {
-            viewModel.handleEvent(ListEvent.DeletePersona(email))
+            viewModel.handleEvent(ListPersonaEvent.DeletePersona(email))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycler)
+        setContentView(R.layout.activity_recycler_persona)
 
         rvPersonas = this.findViewById(R.id.rvPersonas)
-        val adapter = PersonasAdapter(ListActionsImpl())
+        val adapter = PersonasAdapter(ListPersonaActionsImpl())
 
         rvPersonas.adapter = adapter
         rvPersonas.layoutManager = GridLayoutManager(this, 1)
 
-        viewModel.handleEvent(ListEvent.LoadPersonas)
+        viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
         viewModel.uiState.observe(this) { state ->
             state.mensaje?.let { mensaje ->
                 Timber.i(mensaje)
                 Snackbar.make(rvPersonas, mensaje, Snackbar.LENGTH_SHORT).show()
-                viewModel.handleEvent(ListEvent.ClearState)
+                viewModel.handleEvent(ListPersonaEvent.ClearState)
             }
             state.lista?.let { listaPersonas ->
                 adapter.submitList(listaPersonas)
@@ -66,17 +66,17 @@ class ListActivity : AppCompatActivity() {
                     Snackbar.LENGTH_LONG
                 )
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                        viewModel.handleEvent(ListEvent.UndoDeletePersona(persona))
+                        viewModel.handleEvent(ListPersonaEvent.UndoDeletePersona(persona))
                     }
                     .show()
-                viewModel.handleEvent(ListEvent.ClearState)
+                viewModel.handleEvent(ListPersonaEvent.ClearState)
             }
         }
     }
 
     public override fun onResume() {
         super.onResume()
-        viewModel.handleEvent(ListEvent.LoadPersonas)
+        viewModel.handleEvent(ListPersonaEvent.LoadPersonas)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
