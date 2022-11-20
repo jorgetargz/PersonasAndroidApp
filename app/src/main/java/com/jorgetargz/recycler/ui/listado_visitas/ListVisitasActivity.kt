@@ -136,7 +136,7 @@ class ListVisitasActivity : AppCompatActivity() {
                 txtCIF.hint = stringProvider.getString(R.string.helper_text_CIF)
 
                 AlertDialog.Builder(this)
-                    .setTitle(stringProvider.getString(R.string.filtrar_email))
+                    .setTitle(stringProvider.getString(R.string.filtrar_cif))
                     .setView(txtCIF)
                     .setPositiveButton(
                         stringProvider.getString(R.string.filtrar)
