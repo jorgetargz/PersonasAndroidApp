@@ -60,6 +60,7 @@ class EditVisitaActivity : AppCompatActivity() {
                 with(binding) {
                     textFieldCIF.editText?.setText(it.cifHotel)
                     textFieldEmail.editText?.setText(it.emailPersona)
+                    textFieldValoracion.editText?.setText(it.valoracion)
                 }
             }
             uiState.visitaSinEditar?.let { visita ->

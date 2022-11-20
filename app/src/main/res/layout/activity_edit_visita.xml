@@ -100,22 +100,10 @@
         android:layout_height="wrap_content"
         android:text="@string/editar_visita"
         app:icon="@drawable/arrows_rotate_solid"
-        app:layout_constraintBottom_toTopOf="@+id/containedButtonClean"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
-        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBottomImagePersonas" />
-
-    <Button
-        android:id="@+id/containedButtonClean"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/limpiarCampos"
-        app:icon="@drawable/circle_xmark_regular"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopImageHoteles"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/containedButtonEditVisita" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottomImagePersonas" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineIzquierda"
