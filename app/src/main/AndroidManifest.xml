@@ -60,6 +60,10 @@
             android:name=".ui.listado_visitas.ListVisitasActivity"
             android:parentActivityName=".ui.main.MainActivity" />
 
+        <activity
+            android:name=".ui.edit_visita.EditVisitaActivity"
+            android:parentActivityName=".ui.listado_visitas.ListVisitasActivity" />
+
     </application>
 
 </manifest>

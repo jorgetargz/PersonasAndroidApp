@@ -7,7 +7,7 @@
     tools:context=".ui.add_hotel.AddHotelActivity">
 
     <ImageView
-        android:id="@+id/imageViewSkyline"
+        android:id="@+id/imageViewReception"
         android:layout_width="242dp"
         android:layout_height="87dp"
         android:contentDescription="@string/app_name"
@@ -19,10 +19,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldCIF"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
+        android:hint="@string/cif"
         app:helperText="@string/helper_text_CIF"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
@@ -32,20 +33,22 @@
         app:layout_constraintTop_toBottomOf="@+id/guidelineTopImagePersonas"
         app:startIconDrawable="@drawable/briefcase_solid">
 
-        <AutoCompleteTextView
-            android:hint="@string/CIF"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:enabled="false"
+            android:maxLines="1"
+            android:textColorHint="#5C6BC0" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
+        android:hint="@string/email"
         app:helperText="@string/helper_text_email"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
@@ -55,11 +58,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textFieldCIF"
         app:startIconDrawable="@drawable/envelope_open_regular">
 
-        <AutoCompleteTextView
-            android:hint="@string/email"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:enabled="false"
+            android:maxLines="1"
+            android:textColorHint="#5C6BC0" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,12 +94,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/containedButtonAddPerson"
+        android:id="@+id/containedButtonEditVisita"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/añadirVisita"
-        app:icon="@drawable/bell_concierge_solid"
+        android:text="@string/editar_visita"
+        app:icon="@drawable/arrows_rotate_solid"
         app:layout_constraintBottom_toTopOf="@+id/containedButtonClean"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
@@ -111,7 +115,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopImageHoteles"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/containedButtonAddPerson" />
+        app:layout_constraintTop_toBottomOf="@+id/containedButtonEditVisita" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineIzquierda"

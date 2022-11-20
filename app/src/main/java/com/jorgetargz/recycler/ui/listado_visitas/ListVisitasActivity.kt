@@ -15,6 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.ui.common.Constantes
+import com.jorgetargz.recycler.ui.edit_visita.EditVisitaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -30,10 +31,10 @@ class ListVisitasActivity : AppCompatActivity() {
 
     inner class ListVisitasActionsImpl : ListVisitasActions {
         override fun editVisita(cif: String, email: String) {
-//            val intent = Intent(this@ListVisitasActivity, EditHotelActivity::class.java)
-//            intent.putExtra(Constantes.CIF, cif)
-//            intent.putExtra(Constantes.EMAIL, email)
-//            startActivity(intent)
+            val intent = Intent(this@ListVisitasActivity, EditVisitaActivity::class.java)
+            intent.putExtra(Constantes.CIF, cif)
+            intent.putExtra(Constantes.EMAIL, email)
+            startActivity(intent)
         }
 
         override fun deleteVisita(cif: String, email: String) {

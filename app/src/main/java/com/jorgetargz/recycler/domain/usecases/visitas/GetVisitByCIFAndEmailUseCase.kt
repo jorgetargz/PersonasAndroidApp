@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetVisitByCIFAndEmailUseCase @Inject constructor(private val repositorioVisitas: RepositorioVisitas) {
 
     suspend fun invoke(cif: String, email: String) =
-        repositorioVisitas.getVisitaByEmailAndCIF(cif, email)
+        repositorioVisitas.getVisitaByEmailAndCIF(email, cif)
 }

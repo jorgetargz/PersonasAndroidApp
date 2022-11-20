@@ -70,4 +70,6 @@
     <string name="filtrar_cif">Filtrar por CIF</string>
     <string name="filtrar">Filtrar</string>
     <string name="undo_delete_visita">Visita Recuperada</string>
+    <string name="editar_visita">Editar Visita</string>
+    <string name="visita_actualizada">Visita Actualizada</string>
 </resources>
