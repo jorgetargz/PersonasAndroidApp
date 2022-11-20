@@ -15,8 +15,8 @@ class ValidarHotelUseCase @Inject constructor() {
         estrellas: String,
         stringProvider: StringProvider,
     ): String? {
-        val regexEstrellas = Pattern.compile("[1-5]")
-        val regexCif = Pattern.compile("[A-Z][0-9]{8}")
+        val regexEstrellas = Pattern.compile(Constantes.REGEX_ESTRELLAS)
+        val regexCif = Pattern.compile(Constantes.REGEX_CIF)
         var error: String? = null
         if (nombre.isEmpty() || telefono.isEmpty() ||
             cif.isEmpty() || estrellas.isEmpty()
