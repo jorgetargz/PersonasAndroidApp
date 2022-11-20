@@ -7,20 +7,21 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.jorgetargz.recycler.data.room.modelo.PersonaHotelCrossRef
+import com.jorgetargz.recycler.data.room.utils.SQLQueries
 
 @Dao
 interface PersonaHotelDao {
 
-    @Query("SELECT * FROM personas_hoteles")
+    @Query(SQLQueries.SELECT_ALL_VISITAS)
     suspend fun getAll(): List<PersonaHotelCrossRef>
 
-    @Query("SELECT * FROM personas_hoteles WHERE email = :email")
+    @Query(SQLQueries.SELECT_VISITAS_BY_EMAIL)
     suspend fun findByEmail(email: String): List<PersonaHotelCrossRef>
 
-    @Query("SELECT * FROM personas_hoteles WHERE cif = :cif")
+    @Query(SQLQueries.SELECT_VISITAS_BY_CIF)
     suspend fun findByCif(cif: String): List<PersonaHotelCrossRef>
 
-    @Query("SELECT * FROM personas_hoteles WHERE email = :email AND cif = :cif LIMIT 1")
+    @Query(SQLQueries.SELECT_VISITAS_BY_EMAIL_AND_CIF)
     suspend fun findByEmailAndCif(email: String, cif: String): PersonaHotelCrossRef?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
