@@ -51,6 +51,15 @@
         <activity
             android:name=".ui.edit_hotel.EditHotelActivity"
             android:parentActivityName=".ui.listado_hoteles.ListHotelesActivity" />
+
+        <activity
+            android:name=".ui.add_visita.AddVisitaActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <activity
+            android:name=".ui.listado_visitas.ListVisitasActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
+
     </application>
 
 </manifest>

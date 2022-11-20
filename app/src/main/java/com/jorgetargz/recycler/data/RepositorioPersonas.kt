@@ -23,6 +23,4 @@ class RepositorioPersonas @Inject constructor(
 
     suspend fun getHotelesOfPersona(persona: Persona) =
         personasDao.getHotelsOfPersona(persona.email).flatMap { it.hotels }.map { it.toHotel() }
-
-
 }

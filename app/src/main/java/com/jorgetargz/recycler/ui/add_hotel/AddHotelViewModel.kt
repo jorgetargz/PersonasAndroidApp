@@ -23,10 +23,10 @@ class AddHotelViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(
-        AddHotelMainState(null)
+        AddHotelState(null)
     )
 
-    val uiState: LiveData<AddHotelMainState> get() = _uiState
+    val uiState: LiveData<AddHotelState> get() = _uiState
 
     private fun addHotel(cif: String, nombre: String, telefono: String, estrellas: String) {
         val errorValidacion =

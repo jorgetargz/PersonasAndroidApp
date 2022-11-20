@@ -62,18 +62,18 @@ class ListHotelesActivity : AppCompatActivity() {
                 Snackbar.make(rvHoteles, mensaje, Snackbar.LENGTH_SHORT).show()
                 viewModel.handleEvent(ListHotelesEvent.ClearState)
             }
-            state.lista?.let { listaPersonas ->
-                adapter.submitList(listaPersonas)
+            state.lista?.let { listaHoteles ->
+                adapter.submitList(listaHoteles)
             }
-            state.hotelDeleted?.let { persona ->
-                Timber.i(Constantes.HOTEL_DELETED, persona.cif)
+            state.hotelDeleted?.let { hotel ->
+                Timber.i(Constantes.HOTEL_DELETED, hotel.cif)
                 Snackbar.make(
                     rvHoteles,
                     stringProvider.getString(R.string.hotel_borrado),
                     Snackbar.LENGTH_LONG
                 )
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                        viewModel.handleEvent(ListHotelesEvent.UndoDeleteHotel(persona))
+                        viewModel.handleEvent(ListHotelesEvent.UndoDeleteHotel(hotel))
                     }
                     .show()
                 viewModel.handleEvent(ListHotelesEvent.ClearState)

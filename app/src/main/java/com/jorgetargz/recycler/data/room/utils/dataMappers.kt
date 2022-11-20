@@ -30,16 +30,16 @@ fun HotelEntity.toHotel(): Hotel {
 
 fun PersonaHotelCrossRef.toVisita(): Visita {
     return Visita(
-        this.cif,
         this.email,
+        this.cif,
         this.valoracion
     )
 }
 
 fun Visita.toPersonaHotelCrossRef(): PersonaHotelCrossRef {
     return PersonaHotelCrossRef(
-        this.cifHotel,
         this.emailPersona,
+        this.cifHotel,
         this.valoracion
     )
 }

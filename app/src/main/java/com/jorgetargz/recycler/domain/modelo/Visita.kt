@@ -1,7 +1,7 @@
 package com.jorgetargz.recycler.domain.modelo
 
 data class Visita(
-    val persona: Persona,
-    val hotel: Hotel,
+    val emailPersona: String,
+    val cifHotel: String,
     val valoracion: String,
 )

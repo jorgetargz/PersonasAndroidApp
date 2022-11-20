@@ -54,4 +54,20 @@
     <string name="updateHotel">Update Hotel</string>
     <string name="hotel_actualizado">Hotel actualizado</string>
     <string name="actualizarHotel">Actualizar Hotel</string>
+    <string name="añadirVisita">Añadir Visita</string>
+    <string name="openDatabaseVisitas">Mostrar Visitas</string>
+    <string name="visita_añadida">Visita añadida</string>
+    <string name="valoracion">Valoracion</string>
+    <string name="helper_text_valoracion">Comenta tu experiencia</string>
+    <string name="añadirValoracion">Añadir Valoracion</string>
+    <string name="error_añadir_visita">Error al añadir visita</string>
+    <string name="visita_eliminada">Visita eliminada</string>
+    <string name="error_eliminar_visita">Error al eliminar visita</string>
+    <string name="error_cargar_listas">Error al cargar emails y cifs</string>
+    <string name="delete_visita">Delete Visita</string>
+    <string name="update_visita">Update Visita</string>
+    <string name="filtrar_email">Filtrar por email</string>
+    <string name="filtrar_cif">Filtrar por CIF</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="undo_delete_visita">Visita Recuperada</string>
 </resources>

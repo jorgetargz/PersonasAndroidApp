@@ -13,10 +13,12 @@ import com.jorgetargz.recycler.R
 import com.jorgetargz.recycler.databinding.ActivityMainBinding
 import com.jorgetargz.recycler.ui.add_hotel.AddHotelActivity
 import com.jorgetargz.recycler.ui.add_persona.AddPersonaActivity
+import com.jorgetargz.recycler.ui.add_visita.AddVisitaActivity
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.ui.listado_hoteles.ListHotelesActivity
 import com.jorgetargz.recycler.ui.listado_personas.ListPersonaActivity
+import com.jorgetargz.recycler.ui.listado_visitas.ListVisitasActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -24,7 +26,6 @@ import timber.log.Timber
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var temp: Int = 0
     private lateinit var binding: ActivityMainBinding
     private val stringProvider = StringProvider(this)
 
@@ -42,27 +43,35 @@ class MainActivity : AppCompatActivity() {
 
             imageViewHoteles.loadUrl(Constantes.IMAGE_SKYSCRAPERS)
 
+            imageViewRecepcion.loadUrl(Constantes.IMAGE_RECEPTION)
+
             containedButtonAddPerson.setOnClickListener {
-                temp++
                 val intent = Intent(this@MainActivity, AddPersonaActivity::class.java)
                 startActivity(intent)
             }
 
             containedButtonAddHotel.setOnClickListener {
-                temp++
                 val intent = Intent(this@MainActivity, AddHotelActivity::class.java)
                 startActivity(intent)
             }
 
+            containedButtonAddVisita.setOnClickListener {
+                val intent = Intent(this@MainActivity, AddVisitaActivity::class.java)
+                startActivity(intent)
+            }
+
             containedButtonOpenListPersonas.setOnClickListener {
-                temp++
                 val intent = Intent(this@MainActivity, ListPersonaActivity::class.java)
                 startActivity(intent)
             }
 
             containedButtonOpenListHoteles.setOnClickListener {
-                temp++
                 val intent = Intent(this@MainActivity, ListHotelesActivity::class.java)
+                startActivity(intent)
+            }
+
+            containedButtonOpenListVisitas.setOnClickListener {
+                val intent = Intent(this@MainActivity, ListVisitasActivity::class.java)
                 startActivity(intent)
             }
 
@@ -104,18 +113,6 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        Timber.tag(Constantes.INSTANCE).i(Constantes.ON_SAVE_INSTANCE_STATE)
-        outState.putInt(Constantes.COUNT_KEY, temp)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        Timber.tag(Constantes.INSTANCE).i(Constantes.ON_RESTORE_INSTANCE_STATE)
-        temp = savedInstanceState.getInt(Constantes.COUNT_KEY)
     }
 }
 

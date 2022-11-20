@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageViewSkyline"
-        android:layout_width="230dp"
-        android:layout_height="70dp"
+        android:layout_width="242dp"
+        android:layout_height="87dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopImagePersonas"
@@ -19,7 +19,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldCIF"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/CIF"
@@ -27,92 +27,66 @@
         app:helperText="@string/helper_text_CIF"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/textFieldNombre"
+        app:layout_constraintBottom_toTopOf="@+id/textFieldEmail"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/guidelineTopImagePersonas"
         app:startIconDrawable="@drawable/briefcase_solid">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:hint="@string/CIF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textColorHint="#5C6BC0" />
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldNombre"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/textFieldEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre"
+        android:hint="@string/email"
         app:errorEnabled="true"
-        app:helperText="@string/helper_text_nombre_hotel"
+        app:helperText="@string/helper_text_email"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/textFieldTelefono"
+        app:layout_constraintBottom_toTopOf="@+id/textFieldValoracion"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/textFieldCIF"
-        app:startIconDrawable="@drawable/hotel_solid">
+        app:startIconDrawable="@drawable/envelope_open_regular">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:hint="@string/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:textColorHint="#5C6BC0"
-            android:visibility="visible" />
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldTelefono"
+        android:id="@+id/textFieldValoracion"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/telefono"
+        android:hint="@string/valoracion"
         app:errorEnabled="true"
-        app:helperText="@string/helper_text_telefono"
-        app:helperTextEnabled="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/textFieldEstrellas"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
-        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldNombre"
-        app:startIconDrawable="@drawable/phone_solid">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:textColorHint="#5C6BC0" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldEstrellas"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/estrellas"
-        app:errorEnabled="true"
-        app:helperText="@string/helper_text_estrellas"
+        app:helperText="@string/helper_text_valoracion"
         app:helperTextEnabled="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottomImagePersonas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldTelefono"
-        app:startIconDrawable="@drawable/star_solid">
+        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail"
+        app:startIconDrawable="@drawable/pencil_solid">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLines="1"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:maxLines="3"
             android:textColorHint="#7E57C2" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -122,8 +96,8 @@
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/añadirHotel"
-        app:icon="@drawable/hotel_solid"
+        android:text="@string/añadirVisita"
+        app:icon="@drawable/bell_concierge_solid"
         app:layout_constraintBottom_toTopOf="@+id/containedButtonClean"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
@@ -167,20 +141,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67" />
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopImageHoteles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.87" />
+        app:layout_constraintGuide_percent="0.92" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottomImageHoteles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95281583" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

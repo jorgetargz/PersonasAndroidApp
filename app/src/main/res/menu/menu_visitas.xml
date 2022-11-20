@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- "Mark Favorite", should appear as action button if possible -->
+    <item
+        android:id="@+id/acerca_de"
+        android:icon="@drawable/circle_info_solid"
+        android:title="@string/acerca_de"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/github"
+        android:icon="@drawable/github"
+        android:title="@string/github"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/emailFilter"
+        android:icon="@drawable/envelope_open_regular"
+        android:title="@string/filtrar_email"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/cifFilter"
+        android:icon="@drawable/briefcase_solid"
+        android:title="@string/filtrar_cif"
+        app:showAsAction="never" />
+</menu>
