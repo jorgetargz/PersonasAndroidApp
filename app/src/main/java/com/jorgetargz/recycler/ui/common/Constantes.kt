@@ -28,6 +28,8 @@ object Constantes {
         "https://static.vecteezy.com/system/resources/thumbnails/002/962/168/small/free-hand-sketch-of-new-york-city-skyline-free-vector.jpg"
     const val IMAGE_RECEPTION: String =
         "https://static.vecteezy.com/system/resources/previews/000/288/085/non_2x/reception-vector-icon.jpg"
+    const val IMAGE_TAJETA: String =
+        "https://www.nicepng.com/png/detail/87-870107_credit-cards-logo-png-credit-card-logo-png.png"
     const val GITHUB_PROFILE_URL = "https://github.com/jorgetargz"
     const val NAMED_INJECT_STRING_PROVIDER = "string_provider"
 }

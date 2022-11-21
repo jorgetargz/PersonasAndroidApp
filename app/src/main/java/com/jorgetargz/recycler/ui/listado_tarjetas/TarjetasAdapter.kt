@@ -36,14 +36,11 @@ class TarjetasAdapter(
         fun bind(item: Tarjeta) = with(binding) {
             tvNombre.text = item.nombreTitular
             tvNumero.text = item.numero.replaceRange(4, 12, "********")
-
+            tvNumeroReal.text = item.numero
             buttonDelete.setOnClickListener {
-                listTarjetasActions1.deleteTarjeta(binding.tvNumero.text.toString())
+                listTarjetasActions1.deleteTarjeta(binding.tvNumeroReal.text.toString())
             }
 
-            buttonView.setOnClickListener {
-                listTarjetasActions1.viewTarjeta(binding.tvNumero.text.toString())
-            }
         }
     }
 

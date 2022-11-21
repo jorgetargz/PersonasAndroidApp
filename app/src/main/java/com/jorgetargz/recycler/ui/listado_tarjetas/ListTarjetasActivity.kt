@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jorgetargz.recycler.R
+import com.jorgetargz.recycler.ui.add_tarjeta.AddTarjetaActivity
 import com.jorgetargz.recycler.ui.common.Constantes
-import com.jorgetargz.recycler.ui.edit_persona.EditPersonaActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -28,12 +28,6 @@ class ListTarjetasActivity : AppCompatActivity() {
     private val viewModel: ListTarjetasViewModel by viewModels()
 
     inner class ListTarjetasActionsImpl : ListTarjetasActions {
-        override fun viewTarjeta(numero: String) {
-            val intent = Intent(this@ListTarjetasActivity, EditPersonaActivity::class.java)
-            intent.putExtra(Constantes.EMAIL, numero)
-            startActivity(intent)
-        }
-
         override fun deleteTarjeta(numero: String) {
             viewModel.handleEvent(ListTarjetasEvent.DeleteTarjeta(numero))
         }
@@ -112,7 +106,7 @@ class ListTarjetasActivity : AppCompatActivity() {
                 true
             }
             R.id.addTarjeta -> {
-                val intent = Intent(this, EditPersonaActivity::class.java)
+                val intent = Intent(this, AddTarjetaActivity::class.java)
                 intent.putExtra(Constantes.EMAIL, email)
                 startActivity(intent)
                 true

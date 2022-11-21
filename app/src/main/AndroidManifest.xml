@@ -47,6 +47,10 @@
             android:parentActivityName=".ui.edit_persona.EditPersonaActivity" />
 
         <activity
+            android:name=".ui.add_tarjeta.AddTarjetaActivity"
+            android:parentActivityName=".ui.listado_tarjetas.ListTarjetasActivity" />
+
+        <activity
             android:name=".ui.listado_hoteles.ListHotelesActivity"
             android:parentActivityName=".ui.main.MainActivity" />
 

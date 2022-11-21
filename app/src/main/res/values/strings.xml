@@ -86,4 +86,12 @@
     <string name="error_añadir_tarjeta">Error al Añadir Tarjeta</string>
     <string name="tarjeta_eliminada">Tarjeta Eliminada</string>
     <string name="error_eliminar_tarjeta">Error al Eliminar Tarjeta</string>
+    <string name="titular">Titular</string>
+    <string name="numero_tarjeta">Numero Tarjeta</string>
+    <string name="helper_text_numero_tarjeta">4548812049400004</string>
+    <string name="helper_text_caducidad">16/10/2023</string>
+    <string name="añadirTarjeta">Añadir Tarjeta</string>
+    <string name="hint_caducidad">Caducidad</string>
+    <string name="cvv_tarjeta">CVV</string>
+    <string name="helper_text_cvv_tarjeta">666</string>
 </resources>

@@ -81,7 +81,7 @@ class ListTarjetasViewModel @Inject constructor(
 
     fun handleEvent(event: ListTarjetasEvent) {
         when (event) {
-            is ListTarjetasEvent.DeleteTarjeta -> deleteTarjeta(event.numeroTarjeta)
+            is ListTarjetasEvent.DeleteTarjeta -> deleteTarjeta(event.numero)
             is ListTarjetasEvent.UndoDeleteTarjeta -> undoDelete(event.tarjeta)
             is ListTarjetasEvent.ClearState -> clearState()
             is ListTarjetasEvent.LoadTarjetasByEmail -> loadTarjetasByEmail(event.email)
