@@ -64,7 +64,7 @@ class EditVisitaActivity : AppCompatActivity() {
                 }
             }
             uiState.visitaSinEditar?.let { visita ->
-                Timber.i(Constantes.HOTEL_EDITED, visita.cifHotel, visita.emailPersona)
+                Timber.i(Constantes.VISITA_EDITED, visita.cifHotel, visita.emailPersona)
                 Snackbar.make(
                     binding.root,
                     stringProvider.getString(R.string.visita_actualizada),
