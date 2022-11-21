@@ -5,6 +5,6 @@ import com.jorgetargz.recycler.domain.common.Constantes
 data class Hotel(
     val cif: String = Constantes.EMPTY_STRING,
     val nombre: String = Constantes.EMPTY_STRING,
-    var estrellas: Int = 0,
+    val estrellas: Int = 0,
     val telefono: String = Constantes.EMPTY_STRING,
 )

@@ -6,7 +6,7 @@ import java.time.LocalDate
 data class Persona(
     val email: String = Constantes.EMPTY_STRING,
     val nombre: String = Constantes.EMPTY_STRING,
-    var fnacimiento: LocalDate? = null,
+    val fnacimiento: LocalDate? = null,
     val telefono: String = Constantes.EMPTY_STRING,
 )
 
