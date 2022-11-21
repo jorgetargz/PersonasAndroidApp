@@ -1,8 +1,9 @@
 package com.jorgetargz.recycler.data.room
 
 import androidx.room.*
-import com.jorgetargz.recycler.data.room.modelo.PersonaConHoteles
+import com.jorgetargz.recycler.data.room.modelo.relacciones.PersonaConHoteles
 import com.jorgetargz.recycler.data.room.modelo.PersonaEntity
+import com.jorgetargz.recycler.data.room.modelo.relacciones.PersonaConTarjetas
 import com.jorgetargz.recycler.data.room.utils.SQLQueries
 
 @Dao
@@ -14,6 +15,10 @@ interface PersonasDao {
     @Transaction
     @Query(SQLQueries.SELECT_PERSONA_BY_EMAIL)
     suspend fun getHotelsOfPersona(email: String): List<PersonaConHoteles>
+
+    @Transaction
+    @Query(SQLQueries.SELECT_PERSONA_BY_EMAIL)
+    suspend fun getTarjetasOfPersona(email: String): List<PersonaConTarjetas>
 
     @Query(SQLQueries.SELECT_PERSONA_BY_EMAIL)
     suspend fun findByEmail(email: String): PersonaEntity

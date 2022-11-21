@@ -1,7 +1,7 @@
 package com.jorgetargz.recycler.data.room
 
 import androidx.room.*
-import com.jorgetargz.recycler.data.room.modelo.HotelConPersonas
+import com.jorgetargz.recycler.data.room.modelo.relacciones.HotelConPersonas
 import com.jorgetargz.recycler.data.room.modelo.HotelEntity
 import com.jorgetargz.recycler.data.room.utils.SQLQueries
 
