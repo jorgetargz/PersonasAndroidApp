@@ -5,6 +5,8 @@ object Constantes {
     const val PERSONA_EDITED: String = "persona_editada"
     const val PERSONA_DELETED: String = "Persona eliminada"
     const val PERSONA_ADDED: String = "Persona agregada"
+    const val TARJETA_DELETED: String = "Targeta eliminada"
+    const val TARJETA_ADDED: String = "Targeta agregada"
     const val HOTEL_ADDED: String = "Hotel añadido"
     const val HOTEL_DELETED: String = "Hotel eliminado"
     const val HOTEL_EDITED: String = "Hotel editado"

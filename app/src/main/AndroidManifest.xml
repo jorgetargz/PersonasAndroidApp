@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recycler"
         tools:targetApi="33">
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
@@ -28,6 +29,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".ui.listado_personas.ListPersonaActivity"
             android:parentActivityName=".ui.main.MainActivity" />
@@ -39,6 +41,10 @@
         <activity
             android:name=".ui.edit_persona.EditPersonaActivity"
             android:parentActivityName=".ui.listado_personas.ListPersonaActivity" />
+
+        <activity
+            android:name=".ui.listado_tarjetas.ListTarjetasActivity"
+            android:parentActivityName=".ui.edit_persona.EditPersonaActivity" />
 
         <activity
             android:name=".ui.listado_hoteles.ListHotelesActivity"

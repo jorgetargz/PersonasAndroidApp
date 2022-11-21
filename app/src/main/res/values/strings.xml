@@ -72,4 +72,18 @@
     <string name="undo_delete_visita">Visita Recuperada</string>
     <string name="editar_visita">Editar Visita</string>
     <string name="visita_actualizada">Visita Actualizada</string>
+    <string name="openDatabaseTarjetas">Mostrar Tarjetas</string>
+    <string name="tarjeta_borrada">Tarjeta Eliminada</string>
+    <string name="undo_delete_tarjeta">Tarjeta Recuperada</string>
+    <string name="numero">Numero</string>
+    <string name="add_tarjeta">Añadir tarjeta</string>
+    <string name="tarjeta_añadida">Tarjeta Anñadida</string>
+    <string name="error_numero_tarjeta">Numero No valido</string>
+    <string name="error_fecha_caducidad_tarjeta">Caducidad No valida</string>
+    <string name="error_cvv_tarjeta">CVV No Valido</string>
+    <string name="error_nombre_titular_tarjeta">Nombre No Valido</string>
+    <string name="error_fecha_caducidad_pasada">Tarjeta Caducada</string>
+    <string name="error_añadir_tarjeta">Error al Añadir Tarjeta</string>
+    <string name="tarjeta_eliminada">Tarjeta Eliminada</string>
+    <string name="error_eliminar_tarjeta">Error al Eliminar Tarjeta</string>
 </resources>

@@ -6,6 +6,7 @@ object Constantes {
     const val NAMED_INJECT_DB = "assetDB"
 
     const val TABLE_PERSONAS = "personas"
+    const val TABLE_TARJETAS = "tarjetas"
     const val TABLE_HOTELES = "hoteles"
     const val TABLE_PERSONAS_HOTELES = "personas_hoteles"
     const val COLUMN_EMAIL = "email"
@@ -17,5 +18,8 @@ object Constantes {
     const val COLUMN_ESTRELLAS = "estrellas"
     const val COLUMN_TELEFONO_RECEPCION = "telefono_recepcion"
     const val COLUMN_VALORACION = "valoracion"
+    const val COLUMN_NOMBRE_TITULAR = "nombre_titular"
+    const val COLUMN_FECHA_CADUCIDAD = "fecha_caducidad"
+    const val COLUMN_CVV = "cvv"
 
 }

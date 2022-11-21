@@ -2,10 +2,7 @@ package com.jorgetargz.recycler.data.room.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jorgetargz.recycler.data.room.AppDatabase
-import com.jorgetargz.recycler.data.room.HotelesDao
-import com.jorgetargz.recycler.data.room.PersonaHotelDao
-import com.jorgetargz.recycler.data.room.PersonasDao
+import com.jorgetargz.recycler.data.room.*
 import com.jorgetargz.recycler.data.room.common.Constantes
 import dagger.Module
 import dagger.Provides
@@ -39,6 +36,10 @@ object RoomModule {
     @Provides
     fun providesPersonaDao(personasDB: AppDatabase): PersonasDao =
         personasDB.personasDao()
+
+    @Provides
+    fun providesTarjetasDao(personasDB: AppDatabase): TarjetasDao =
+        personasDB.tarjetasDao()
 
     @Provides
     fun providesPersonaHotelDao(personasDB: AppDatabase): PersonaHotelDao =

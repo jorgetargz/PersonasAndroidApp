@@ -15,6 +15,7 @@ import com.jorgetargz.recycler.databinding.ActivityEditPersonaBinding
 import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.ui.common.loadUrl
 import com.jorgetargz.recycler.ui.listado_hoteles.ListHotelesActivity
+import com.jorgetargz.recycler.ui.listado_tarjetas.ListTarjetasActivity
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -55,6 +56,12 @@ class EditPersonaActivity : AppCompatActivity() {
 
             containedButtonOpenListHoteles.setOnClickListener {
                 val intent = Intent(this@EditPersonaActivity, ListHotelesActivity::class.java)
+                intent.putExtra(Constantes.EMAIL, emailPersona)
+                startActivity(intent)
+            }
+
+            containedButtonOpenListTarjetas.setOnClickListener {
+                val intent = Intent(this@EditPersonaActivity, ListTarjetasActivity::class.java)
                 intent.putExtra(Constantes.EMAIL, emailPersona)
                 startActivity(intent)
             }

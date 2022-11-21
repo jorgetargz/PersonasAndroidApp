@@ -3,8 +3,10 @@ package com.jorgetargz.recycler.data.room.utils
 import com.jorgetargz.recycler.data.room.modelo.HotelEntity
 import com.jorgetargz.recycler.data.room.modelo.PersonaEntity
 import com.jorgetargz.recycler.data.room.modelo.PersonaHotelCrossRef
+import com.jorgetargz.recycler.data.room.modelo.TarjetaEntity
 import com.jorgetargz.recycler.domain.modelo.Hotel
 import com.jorgetargz.recycler.domain.modelo.Persona
+import com.jorgetargz.recycler.domain.modelo.Tarjeta
 import com.jorgetargz.recycler.domain.modelo.Visita
 
 fun Persona.toPersonaEntity(): PersonaEntity {
@@ -13,6 +15,26 @@ fun Persona.toPersonaEntity(): PersonaEntity {
 
 fun PersonaEntity.toPersona(): Persona {
     return Persona(this.email, this.nombre, this.fnacimiento, this.telefono)
+}
+
+fun Tarjeta.toTarjetaEntity(): TarjetaEntity {
+    return TarjetaEntity(
+        this.numero,
+        this.fechaCaducidad!!,
+        this.cvv,
+        this.emailPersona,
+        this.nombreTitular
+    )
+}
+
+fun TarjetaEntity.toTarjeta(): Tarjeta {
+    return Tarjeta(
+        this.numeroTarjeta,
+        this.fechaCaducidad,
+        this.cvv,
+        this.email,
+        this.nombreTitular
+    )
 }
 
 fun Hotel.toHotelEntity(): HotelEntity {

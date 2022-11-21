@@ -151,11 +151,24 @@
         android:text="@string/openDatabaseHoteles"
         app:icon="@drawable/arrow_right_long_solid"
         app:iconGravity="textEnd"
-        app:layout_constraintBottom_toTopOf="@id/guidelineTopImageHoteles"
+        app:layout_constraintBottom_toTopOf="@id/containedButtonOpenListTarjetas"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
         app:layout_constraintTop_toBottomOf="@+id/containedButtonEditPerson" />
 
+
+    <Button
+        android:id="@+id/containedButtonOpenListTarjetas"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/openDatabaseTarjetas"
+        app:icon="@drawable/arrow_right_long_solid"
+        app:iconGravity="textEnd"
+        app:layout_constraintBottom_toTopOf="@id/guidelineTopImageHoteles"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        app:layout_constraintTop_toBottomOf="@+id/containedButtonOpenListHoteles" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineIzquierda"
@@ -176,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.12" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottomImagePersonas"
@@ -190,6 +203,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.94" />
+        app:layout_constraintGuide_percent="0.96" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

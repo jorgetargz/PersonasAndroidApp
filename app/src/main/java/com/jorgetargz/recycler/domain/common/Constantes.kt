@@ -9,5 +9,6 @@ object Constantes {
     const val REGEX_DATE = "^\\d{2}/\\d{2}/\\d{4}$"
     const val REGEX_ESTRELLAS = "[1-5]"
     const val REGEX_CIF = "[A-Z][0-9]{8}"
+    const val REGEX_CVV = "[0-9]{3}"
     const val EMPTY_STRING = ""
 }

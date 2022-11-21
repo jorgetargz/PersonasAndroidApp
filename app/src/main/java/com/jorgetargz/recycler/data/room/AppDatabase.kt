@@ -6,16 +6,18 @@ import androidx.room.TypeConverters
 import com.jorgetargz.recycler.data.room.modelo.HotelEntity
 import com.jorgetargz.recycler.data.room.modelo.PersonaEntity
 import com.jorgetargz.recycler.data.room.modelo.PersonaHotelCrossRef
+import com.jorgetargz.recycler.data.room.modelo.TarjetaEntity
 import com.jorgetargz.recycler.data.room.utils.Converters
 
 @Database(
-    entities = [PersonaEntity::class, HotelEntity::class, PersonaHotelCrossRef::class],
+    entities = [PersonaEntity::class, TarjetaEntity::class, HotelEntity::class, PersonaHotelCrossRef::class],
     version = 2, exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun personasDao(): PersonasDao
+    abstract fun tarjetasDao(): TarjetasDao
     abstract fun hotelesDao(): HotelesDao
     abstract fun personaHotelDao(): PersonaHotelDao
 
