@@ -3,6 +3,7 @@ package com.jorgetargz.recycler.data.room
 import androidx.room.*
 import com.jorgetargz.recycler.data.room.modelo.relacciones.HotelConPersonas
 import com.jorgetargz.recycler.data.room.modelo.HotelEntity
+import com.jorgetargz.recycler.data.room.modelo.PersonaHotelCrossRef
 import com.jorgetargz.recycler.data.room.utils.SQLQueries
 
 @Dao
@@ -25,5 +26,6 @@ interface HotelesDao {
     suspend fun update(hotel: HotelEntity)
 
     @Delete
-    suspend fun delete(hotel: HotelEntity)
+    @Transaction
+    suspend fun deleteWithVisits(hotel: HotelEntity, visits: List<PersonaHotelCrossRef>)
 }

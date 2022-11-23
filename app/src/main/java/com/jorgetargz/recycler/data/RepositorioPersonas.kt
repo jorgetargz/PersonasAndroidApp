@@ -1,5 +1,6 @@
 package com.jorgetargz.recycler.data
 
+import com.jorgetargz.recycler.data.room.PersonaHotelDao
 import com.jorgetargz.recycler.data.room.PersonasDao
 import com.jorgetargz.recycler.data.room.utils.toHotel
 import com.jorgetargz.recycler.data.room.utils.toPersona
@@ -10,6 +11,7 @@ import javax.inject.Inject
 
 class RepositorioPersonas @Inject constructor(
     private val personasDao: PersonasDao,
+    private val personaHotelDao: PersonaHotelDao,
 ) {
 
     suspend fun getPersonas() = personasDao.getAll().map { it.toPersona() }
@@ -20,7 +22,11 @@ class RepositorioPersonas @Inject constructor(
 
     suspend fun updatePersona(persona: Persona) = personasDao.update(persona.toPersonaEntity())
 
-    suspend fun deletePersona(persona: Persona) = personasDao.delete(persona.toPersonaEntity())
+    suspend fun deletePersona(persona: Persona) {
+        val visitas = personaHotelDao.findByEmail(persona.email)
+        val tarjetas = personasDao.getTarjetasOfPersona(persona.email).flatMap { it.tarjetas }
+        personasDao.deleteWithVisitsAndCards(persona.toPersonaEntity(), visitas, tarjetas)
+    }
 
     suspend fun getHotelesOfPersona(persona: Persona) =
         personasDao.getHotelsOfPersona(persona.email).flatMap { it.hotels }

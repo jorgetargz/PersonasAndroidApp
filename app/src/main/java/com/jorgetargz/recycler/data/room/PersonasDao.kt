@@ -1,8 +1,10 @@
 package com.jorgetargz.recycler.data.room
 
 import androidx.room.*
-import com.jorgetargz.recycler.data.room.modelo.relacciones.PersonaConHoteles
 import com.jorgetargz.recycler.data.room.modelo.PersonaEntity
+import com.jorgetargz.recycler.data.room.modelo.PersonaHotelCrossRef
+import com.jorgetargz.recycler.data.room.modelo.TarjetaEntity
+import com.jorgetargz.recycler.data.room.modelo.relacciones.PersonaConHoteles
 import com.jorgetargz.recycler.data.room.modelo.relacciones.PersonaConTarjetas
 import com.jorgetargz.recycler.data.room.utils.SQLQueries
 
@@ -30,6 +32,11 @@ interface PersonasDao {
     suspend fun update(persona: PersonaEntity)
 
     @Delete
-    suspend fun delete(persona: PersonaEntity)
+    @Transaction
+    suspend fun deleteWithVisitsAndCards(
+        persona: PersonaEntity,
+        visits: List<PersonaHotelCrossRef>,
+        tarjetas: List<TarjetaEntity>
+    )
 
 }
