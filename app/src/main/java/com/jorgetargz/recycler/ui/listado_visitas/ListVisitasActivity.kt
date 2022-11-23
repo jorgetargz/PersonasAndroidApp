@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -50,7 +49,6 @@ class ListVisitasActivity : AppCompatActivity() {
         val adapter = VisitasAdapter(ListVisitasActionsImpl())
 
         rvVisitas.adapter = adapter
-        rvVisitas.layoutManager = GridLayoutManager(this, 1)
 
         viewModel.handleEvent(ListVisitasEvent.LoadVisitas)
 

@@ -18,7 +18,8 @@
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,11 +37,13 @@
 
         <activity
             android:name=".ui.add_persona.AddPersonaActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.edit_persona.EditPersonaActivity"
-            android:parentActivityName=".ui.listado_personas.ListPersonaActivity" />
+            android:parentActivityName=".ui.listado_personas.ListPersonaActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.listado_tarjetas.ListTarjetasActivity"
@@ -48,7 +51,8 @@
 
         <activity
             android:name=".ui.add_tarjeta.AddTarjetaActivity"
-            android:parentActivityName=".ui.listado_tarjetas.ListTarjetasActivity" />
+            android:parentActivityName=".ui.listado_tarjetas.ListTarjetasActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.listado_hoteles.ListHotelesActivity"
@@ -56,15 +60,18 @@
 
         <activity
             android:name=".ui.add_hotel.AddHotelActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.edit_hotel.EditHotelActivity"
-            android:parentActivityName=".ui.listado_hoteles.ListHotelesActivity" />
+            android:parentActivityName=".ui.listado_hoteles.ListHotelesActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.add_visita.AddVisitaActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:screenOrientation="nosensor"/>
 
         <activity
             android:name=".ui.listado_visitas.ListVisitasActivity"
@@ -72,7 +79,8 @@
 
         <activity
             android:name=".ui.edit_visita.EditVisitaActivity"
-            android:parentActivityName=".ui.listado_visitas.ListVisitasActivity" />
+            android:parentActivityName=".ui.listado_visitas.ListVisitasActivity"
+            android:screenOrientation="nosensor"/>
 
     </application>
 

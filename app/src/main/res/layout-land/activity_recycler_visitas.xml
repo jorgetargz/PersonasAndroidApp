@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".ui.listado_hoteles.ListHotelesActivity">
+    tools:context=".ui.listado_visitas.ListVisitasActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHoteles"
+        android:id="@+id/rvVisitas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="1"
+        app:spanCount="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
