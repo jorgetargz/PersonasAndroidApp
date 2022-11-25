@@ -13,9 +13,6 @@ class RepositorioTarjetas @Inject constructor(
 
     suspend fun deleteTarjeta(tarjeta: Tarjeta) = tarjetasDao.delete(tarjeta.toTarjetaEntity())
 
-    suspend fun deleteAllTarjetas(tarjetas: List<Tarjeta>) =
-        tarjetasDao.deleteAll(tarjetas.map { it.toTarjetaEntity() })
-
     suspend fun getTarjetaByNumero(numero: String): Tarjeta =
         tarjetasDao.getByNumero(numero).toTarjeta()
 }
