@@ -71,7 +71,12 @@ class ListPersonaActivity : AppCompatActivity() {
                     Snackbar.LENGTH_LONG
                 )
                     .setAction(stringProvider.getString(R.string.snackbar_undo)) {
-                        viewModel.handleEvent(ListPersonaEvent.UndoDeletePersona(persona))
+                        viewModel.handleEvent(
+                            ListPersonaEvent.UndoDeletePersona(
+                                persona,
+                                state.tarjetasDeleted
+                            )
+                        )
                     }
                     .show()
                 viewModel.handleEvent(ListPersonaEvent.ClearState)
