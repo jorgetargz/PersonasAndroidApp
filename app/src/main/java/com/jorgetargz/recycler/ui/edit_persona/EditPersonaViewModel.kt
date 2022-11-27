@@ -10,6 +10,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -29,6 +30,24 @@ class EditPersonaViewModel @Inject constructor(
     )
 
     val uiState: LiveData<EditPersonaState> get() = _uiState
+
+    private fun loadPerson(email: String) {
+        viewModelScope.launch {
+            try {
+                val persona = getPersonaByEmailUseCase.invoke(email)
+                _uiState.value = persona.let { p ->
+                    _uiState.value?.copy(
+                        personaMostrar = p,
+                    )
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
+                _uiState.value = _uiState.value?.copy(
+                    mensaje = stringProvider.getString(R.string.accion_fallida),
+                )
+            }
+        }
+    }
 
     private fun editPersona(email: String, nombre: String, telefono: String, fnacimiento: String) {
         val errorValidacion =
@@ -53,6 +72,7 @@ class EditPersonaViewModel @Inject constructor(
                         personaSinEditar = personaDatabase,
                     )
                 } catch (e: Exception) {
+                    Timber.e(e)
                     _uiState.value = _uiState.value?.copy(
                         mensaje = stringProvider.getString(R.string.accion_fallida),
                     )
@@ -75,6 +95,7 @@ class EditPersonaViewModel @Inject constructor(
                     personaMostrar = persona,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.accion_fallida),
                 )
@@ -84,17 +105,6 @@ class EditPersonaViewModel @Inject constructor(
 
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, personaSinEditar = null)
-    }
-
-    private fun loadPerson(email: String) {
-        viewModelScope.launch {
-            val persona = getPersonaByEmailUseCase.invoke(email)
-            _uiState.value = persona.let { p ->
-                _uiState.value?.copy(
-                    personaMostrar = p,
-                )
-            }
-        }
     }
 
     fun handleEvent(event: EditPersonaEvent) {

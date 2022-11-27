@@ -9,6 +9,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -26,6 +27,21 @@ class EditVisitaViewModel @Inject constructor(
 
     val uiState: LiveData<EditVisitaState> get() = _uiState
 
+    private fun loadVisita(cif: String, email: String) {
+        viewModelScope.launch {
+            try {
+                val visita = getVisitByCIFAndEmailUseCase.invoke(cif, email)!!
+                _uiState.value = _uiState.value?.copy(
+                    visitaMostrar = visita,
+                )
+            } catch (e: Exception) {
+                Timber.e(e)
+                _uiState.value = _uiState.value?.copy(
+                    mensaje = stringProvider.getString(R.string.accion_fallida))
+            }
+        }
+    }
+
     private fun editVisita(cif: String, email: String, valoracion: String) {
         viewModelScope.launch {
             try {
@@ -38,6 +54,7 @@ class EditVisitaViewModel @Inject constructor(
                     visitaSinEditar = visitaDB,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.accion_fallida),
                 )
@@ -55,6 +72,7 @@ class EditVisitaViewModel @Inject constructor(
                     visitaMostrar = visita,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.accion_fallida),
                 )
@@ -64,15 +82,6 @@ class EditVisitaViewModel @Inject constructor(
 
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, visitaSinEditar = null)
-    }
-
-    private fun loadVisita(cif: String, email: String) {
-        viewModelScope.launch {
-            val visita = getVisitByCIFAndEmailUseCase.invoke(cif, email)!!
-            _uiState.value = _uiState.value?.copy(
-                visitaMostrar = visita,
-            )
-        }
     }
 
 

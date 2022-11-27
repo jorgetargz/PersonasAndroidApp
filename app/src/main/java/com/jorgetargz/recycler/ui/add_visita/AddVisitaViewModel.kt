@@ -11,6 +11,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -46,6 +47,7 @@ class AddVisitaViewModel @Inject constructor(
                         cleanFields = true,
                     )
                 } catch (e: Exception) {
+                    Timber.e(e)
                     _uiState.value = _uiState.value?.copy(
                         mensaje = stringProvider.getString(R.string.error_añadir_visita),
                         visitaAdded = null,
@@ -66,6 +68,7 @@ class AddVisitaViewModel @Inject constructor(
                     cleanFields = false,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.error_eliminar_visita),
                     visitaAdded = null,
@@ -86,6 +89,7 @@ class AddVisitaViewModel @Inject constructor(
                 )
             }
         } catch (e: Exception) {
+            Timber.e(e)
             _uiState.value = _uiState.value?.copy(
                 mensaje = stringProvider.getString(R.string.error_cargar_listas),
             )

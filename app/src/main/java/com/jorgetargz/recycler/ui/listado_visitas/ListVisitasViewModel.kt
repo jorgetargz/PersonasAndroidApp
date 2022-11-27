@@ -8,6 +8,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -40,6 +41,7 @@ class ListVisitasViewModel @Inject constructor(
                 )
             }
         } catch (e: Exception) {
+            Timber.e(e)
             _uiState.value = _uiState.value?.copy(mensaje = e.message)
         }
     }
@@ -53,6 +55,7 @@ class ListVisitasViewModel @Inject constructor(
                 )
             }
         } catch (e: Exception) {
+            Timber.e(e)
             _uiState.value = _uiState.value?.copy(mensaje = e.message)
         }
     }
@@ -65,6 +68,7 @@ class ListVisitasViewModel @Inject constructor(
                 )
             }
         } catch (e: Exception) {
+            Timber.e(e)
             _uiState.value = _uiState.value?.copy(mensaje = e.message)
         }
     }
@@ -80,6 +84,7 @@ class ListVisitasViewModel @Inject constructor(
                 )
                 loadVisitas()
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(mensaje = e.message)
             }
         }
@@ -95,6 +100,7 @@ class ListVisitasViewModel @Inject constructor(
                 )
                 loadVisitas()
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(mensaje = e.message)
             }
         }

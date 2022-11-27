@@ -10,6 +10,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -51,6 +52,7 @@ class AddPersonaViewModel @Inject constructor(
                         cleanFields = true,
                     )
                 } catch (e: Exception) {
+                    Timber.e(e)
                     _uiState.value = _uiState.value?.copy(
                         mensaje = stringProvider.getString(R.string.error_añadir_persona),
                         personaAdded = null,
@@ -75,6 +77,7 @@ class AddPersonaViewModel @Inject constructor(
                     cleanFields = false,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.error_eliminar_persona),
                     personaAdded = null,

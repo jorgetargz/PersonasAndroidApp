@@ -10,6 +10,7 @@ import com.jorgetargz.recycler.ui.common.Constantes
 import com.jorgetargz.recycler.util.StringProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -27,6 +28,24 @@ class EditHotelViewModel @Inject constructor(
     )
 
     val uiState: LiveData<EditHotelState> get() = _uiState
+
+    private fun loadHotel(cif: String) {
+        viewModelScope.launch {
+            try {
+                val persona = getHotelByCIF.invoke(cif)
+                _uiState.value = persona.let { p ->
+                    _uiState.value?.copy(
+                        hotelMostrar = p,
+                    )
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
+                _uiState.value = _uiState.value?.copy(
+                    mensaje = stringProvider.getString(R.string.accion_fallida),
+                )
+            }
+        }
+    }
 
     private fun editHotel(cif: String, nombre: String, telefono: String, estrellas: String) {
         val errorValidacion =
@@ -48,6 +67,7 @@ class EditHotelViewModel @Inject constructor(
                         hotelSinEditar = personaDatabase,
                     )
                 } catch (e: Exception) {
+                    Timber.e(e)
                     _uiState.value = _uiState.value?.copy(
                         mensaje = stringProvider.getString(R.string.accion_fallida),
                     )
@@ -70,6 +90,7 @@ class EditHotelViewModel @Inject constructor(
                     hotelMostrar = hotel,
                 )
             } catch (e: Exception) {
+                Timber.e(e)
                 _uiState.value = _uiState.value?.copy(
                     mensaje = stringProvider.getString(R.string.accion_fallida),
                 )
@@ -79,17 +100,6 @@ class EditHotelViewModel @Inject constructor(
 
     private fun clearState() {
         _uiState.value = _uiState.value?.copy(mensaje = null, hotelSinEditar = null)
-    }
-
-    private fun loadPerson(cif: String) {
-        viewModelScope.launch {
-            val persona = getHotelByCIF.invoke(cif)
-            _uiState.value = persona.let { p ->
-                _uiState.value?.copy(
-                    hotelMostrar = p,
-                )
-            }
-        }
     }
 
     fun handleEvent(event: EditHotelEvent) {
@@ -102,7 +112,7 @@ class EditHotelViewModel @Inject constructor(
             )
             is EditHotelEvent.UndoEditHotel -> undoEditHotel(event.hotel)
             is EditHotelEvent.ClearState -> clearState()
-            is EditHotelEvent.LoadHotel -> loadPerson(event.cif)
+            is EditHotelEvent.LoadHotel -> loadHotel(event.cif)
         }
     }
 }
