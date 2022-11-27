@@ -34,9 +34,9 @@ interface PersonasDao {
     @Delete
     @Transaction
     suspend fun deleteWithVisitsAndCards(
-        persona: PersonaEntity,
+        tarjetas: List<TarjetaEntity>,
         visits: List<PersonaHotelCrossRef>,
-        tarjetas: List<TarjetaEntity>
+        persona: PersonaEntity
     )
 
 }

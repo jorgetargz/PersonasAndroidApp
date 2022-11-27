@@ -25,7 +25,7 @@ class RepositorioPersonas @Inject constructor(
     suspend fun deletePersona(persona: Persona) {
         val visitas = personaHotelDao.findByEmail(persona.email)
         val tarjetas = personasDao.getTarjetasOfPersona(persona.email).flatMap { it.tarjetas }
-        personasDao.deleteWithVisitsAndCards(persona.toPersonaEntity(), visitas, tarjetas)
+        personasDao.deleteWithVisitsAndCards(tarjetas, visitas, persona.toPersonaEntity())
     }
 
     suspend fun getHotelesOfPersona(persona: Persona) =

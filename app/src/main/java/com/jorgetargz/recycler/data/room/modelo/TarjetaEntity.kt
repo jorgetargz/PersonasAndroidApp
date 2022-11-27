@@ -2,11 +2,16 @@ package com.jorgetargz.recycler.data.room.modelo
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.jorgetargz.recycler.data.room.common.Constantes
 import java.time.LocalDate
 
-@Entity(tableName = Constantes.TABLE_TARJETAS)
+@Entity(tableName = Constantes.TABLE_TARJETAS,
+    foreignKeys = [ForeignKey(
+        entity = PersonaEntity::class,
+        parentColumns = ["email"],
+        childColumns = ["email"])])
 data class TarjetaEntity(
     @PrimaryKey(autoGenerate = false)
     val numeroTarjeta: String,
