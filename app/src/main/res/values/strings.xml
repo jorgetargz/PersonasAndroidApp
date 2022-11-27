@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Personas DB</string>
+    <string name="app_name">Personas BD</string>
     <string name="openDatabasePersonas">Mostrar personas</string>
     <string name="openDatabaseHoteles">Mostrar hoteles</string>
     <string name="añadirPersona">Añadir persona</string>
@@ -19,8 +19,8 @@
     <string name="telefono_incorrecto">Telefono no valido</string>
     <string name="fecha_incorrecta">Fecha no valida</string>
     <string name="persona_añadida">Persona añadida</string>
-    <string name="deletePersona">Delete Persona</string>
-    <string name="updatePersona">Update persona</string>
+    <string name="deletePersona">Eliminar Persona</string>
+    <string name="updatePersona">Actualizar persona</string>
     <string name="persona_borrada">Persona eliminada</string>
     <string name="accion_fallida">Accion fallida</string>
     <string name="actualizarPersona">Actualizar Persona</string>
@@ -34,11 +34,11 @@
     <string name="persona_editada">Persona editada</string>
     <string name="acerca_de">Acerca de</string>
     <string name="dialog_acerca_de_title">Acerca de</string>
-    <string name="dialog_acerca_de_content">"Aplicacion desarollada por Jorge Martín Llorente para el modulo Programacion multimedia y dispositivos moviles"</string>
-    <string name="dialog_dismiss">Cancel</string>
+    <string name="dialog_acerca_de_content">"Aplicacion desarollada por Jorge Martín Llorente para el modulo Programacion Multimedia y Dispositivos Moviles impartido por el profesor Oscar Novillo Camacho"</string>
+    <string name="dialog_dismiss">Cancelar</string>
     <string name="github">Mi perfil de GitHub</string>
     <string name="añadirHotel">Añadir hotel</string>
-    <string name="skyline">Skyline</string>
+    <string name="skyline">Ciudad</string>
     <string name="CIF">CIF</string>
     <string name="helper_text_CIF">B12345678</string>
     <string name="helper_text_nombre_hotel">Hotel Palas</string>
@@ -50,8 +50,8 @@
     <string name="hotel_borrado">Hotel Eliminado</string>
     <string name="undo_delete_hotel">Hotel recuperado</string>
     <string name="cif">CIF</string>
-    <string name="deleteHotel">Delete Hotel</string>
-    <string name="updateHotel">Update Hotel</string>
+    <string name="deleteHotel">Eliminar Hotel</string>
+    <string name="updateHotel">Actualizar Hotel</string>
     <string name="hotel_actualizado">Hotel actualizado</string>
     <string name="actualizarHotel">Actualizar Hotel</string>
     <string name="añadirVisita">Añadir Visita</string>
@@ -64,8 +64,8 @@
     <string name="visita_eliminada">Visita eliminada</string>
     <string name="error_eliminar_visita">Error al eliminar visita</string>
     <string name="error_cargar_listas">Error al cargar emails y cifs</string>
-    <string name="delete_visita">Delete Visita</string>
-    <string name="update_visita">Update Visita</string>
+    <string name="delete_visita">Eliminar Visita</string>
+    <string name="update_visita">Actualizar Visita</string>
     <string name="filtrar_email">Filtrar por email</string>
     <string name="filtrar_cif">Filtrar por CIF</string>
     <string name="filtrar">Filtrar</string>
@@ -77,7 +77,7 @@
     <string name="undo_delete_tarjeta">Tarjeta Recuperada</string>
     <string name="numero">Numero</string>
     <string name="add_tarjeta">Añadir tarjeta</string>
-    <string name="tarjeta_añadida">Tarjeta Anñadida</string>
+    <string name="tarjeta_añadida">Tarjeta Añadida</string>
     <string name="error_numero_tarjeta">Numero No valido</string>
     <string name="error_fecha_caducidad_tarjeta">Caducidad No valida</string>
     <string name="error_cvv_tarjeta">CVV No Valido</string>
